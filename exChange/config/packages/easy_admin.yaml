@@ -6,4 +6,4 @@
 #        - App\Entity\User
 easy_admin:
    entities:
-       - App\Entity\Usuario
+       - App\Entity\User
