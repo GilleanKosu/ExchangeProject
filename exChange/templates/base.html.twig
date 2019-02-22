@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link rel="stylesheet" href="{{ asset('build/app.css') }}">
         {% endblock %}
     </head>
@@ -13,6 +15,7 @@
         {% endblock %}
         {% block javascripts %}
         <script src="{{ asset('build/runtime.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="{{ asset('build/app.js') }}"></script>
         {% endblock %}
     </body>
