@@ -1,44 +1,71 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{% block title %}ExChange{% endblock %}
 
 {% block body %}
-<nav>
+  <nav>
     <div class="nav-wrapper blue">
-      <a href="#!" class="brand-logo">Logo</a>
+      <a href="#!" class="brand-logo" id="logo">ExChange</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">Javascript</a></li>
-        <li><a href="mobile.html">Mobile</a></li>
+        <li><a class="waves-effect waves-light modal-trigger"><i class="material-icons left">message</i>Mensajes</a></li>
+        <li><a class="waves-effect waves-light modal-trigger"><i class="material-icons left">person</i>Cuenta</a></li>
+        <li><a class="waves-effect waves-light modal-trigger" href="#searchModal"><i class="material-icons left">search</i>Busqueda</a></li>
       </ul>
     </div>
   </nav>
-
   <ul class="sidenav" id="mobile-demo">
-    <li><a href="sass.html">Sass</a></li>
-    <li><a href="badges.html">Components</a></li>
-    <li><a href="collapsible.html">Javascript</a></li>
-    <li><a href="mobile.html">Mobile</a></li>
+    <li><a class="waves-effect waves-light modal-trigger"><i class="material-icons left">message</i>Mensajes</a></li>
+    <li><a class="waves-effect waves-light modal-trigger"><i class="material-icons left">person</i>Cuenta</a></li>
+    <li><a class="waves-effect waves-light modal-trigger" href="#searchModal"><i class="material-icons left">search</i>Busqueda</a></li>
   </ul>
-          
-<h1>Hola</h1>
-{# 
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/ProjectoExChange/exChange/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/ProjectoExChange/exChange/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
-    </ul>
-</div> #}
-
-
+  <div id="searchModal" class="modal">
+    <form action="./search" method="GET" name="searchForm">
+      <div class="modal-content">
+        <nav>
+          <div class="nav-wrapper blue lighten-2">
+            <div class="input-field">
+              <input id="q" type="search" name="q">
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons" id="clearInput">close</i>
+            </div>
+          </div>
+        </nav>
+        <br>
+        <div class="input-field col s12">
+          <h5>Filtrar Categoría</h5>
+          <select class="browser-default blue lighten-2" name="cat">
+            <option value="none"selected>Escoge una categoría</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+        </div>
+        <div class="input-field col s12">
+          <h5>Filtrar Ciudad</h5>
+          <select class="browser-default blue lighten-2" name="city">
+            <option value="none"selected>Escoge una ciudad</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-close waves-effect blue lighten-4 btn-flat" type="submit">Buscar</button>
+      </div>
+    </form>
+  </div>
 {% endblock %}
