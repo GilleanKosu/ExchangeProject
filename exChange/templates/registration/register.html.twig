@@ -5,11 +5,17 @@
 {% block body %}
     <h1>Register</h1>
 
+    {# {% for user in city %}
+        {{ user.nombreC }}
+        {{ user.id }}
+    {% endfor %} #}
+
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword) }}
         {{ form_row(registrationForm.nombreUsuario) }}
         {{ form_row(registrationForm.apellidos) }}
+        {{ form_row(registrationForm.ciudad) }}
 
         <button class="btn">Register</button>
     {{ form_end(registrationForm) }}

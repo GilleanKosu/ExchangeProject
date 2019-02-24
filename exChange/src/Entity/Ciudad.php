@@ -23,6 +23,11 @@ class Ciudad
      */
     private $nombreCiudad;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nombreC;
+
     public function __construct()
     {
         $this->nombreCiudad = new ArrayCollection();
@@ -62,5 +67,21 @@ class Ciudad
         }
 
         return $this;
+    }
+
+    public function getNombreC(): ?string
+    {
+        return $this->nombreC;
+    }
+
+    public function setNombreC(string $nombreC): self
+    {
+        $this->nombreC = $nombreC;
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return $this->nombreC;
     }
 }

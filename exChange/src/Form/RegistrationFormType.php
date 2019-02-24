@@ -9,6 +9,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+
+use App\Entity\Ciudad;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -34,6 +39,12 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('nombreUsuario')
             ->add('apellidos')
+            ->add('ciudad', EntityType::class, [
+                'class' => Ciudad::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('a');
+                },
+            ])
         ;
     }
 
