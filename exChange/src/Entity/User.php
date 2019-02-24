@@ -35,6 +35,26 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nombreUsuario;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $apellidos;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $tiempoUsuario;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ciudad", inversedBy="nombreCiudad")
+     */
+    private $ciudad;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -111,5 +131,53 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getNombreUsuario(): ?string
+    {
+        return $this->nombreUsuario;
+    }
+
+    public function setNombreUsuario(?string $nombreUsuario): self
+    {
+        $this->nombreUsuario = $nombreUsuario;
+
+        return $this;
+    }
+
+    public function getApellidos(): ?string
+    {
+        return $this->apellidos;
+    }
+
+    public function setApellidos(?string $apellidos): self
+    {
+        $this->apellidos = $apellidos;
+
+        return $this;
+    }
+
+    public function getTiempoUsuario(): ?int
+    {
+        return $this->tiempoUsuario;
+    }
+
+    public function setTiempoUsuario(?int $tiempoUsuario): self
+    {
+        $this->tiempoUsuario = $tiempoUsuario;
+
+        return $this;
+    }
+
+    public function getCiudad(): ?Ciudad
+    {
+        return $this->ciudad;
+    }
+
+    public function setCiudad(?Ciudad $ciudad): self
+    {
+        $this->ciudad = $ciudad;
+
+        return $this;
     }
 }

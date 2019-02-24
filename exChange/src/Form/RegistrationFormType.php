@@ -32,6 +32,8 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('nombreUsuario')
+            ->add('apellidos')
         ;
     }
 
