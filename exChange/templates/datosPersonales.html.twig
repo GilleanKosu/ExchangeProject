@@ -9,23 +9,10 @@
     <label for="inputEmail" class="sr-only">Nuevo nombre de Usuario</label>
     <input type="text" name="nombreUsuario" id="inputNombreUsuario" class="form-control" placeholder="Nombre Usuario" autofocus>
     <label for="inputPassword" class="sr-only">Nueva Password</label>
-<<<<<<< HEAD
-<<<<<<< HEAD
     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
-=======
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <label for="inputImagen" class="sr-only">Nueva Imagen de Usuario</label>
-    <input type="file" name="imagenes" id="inputImagen">
->>>>>>> Ofertas
-=======
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <label for="inputImagen" class="sr-only">Nueva Imagen de Usuario</label>
-    <input type="file" name="imagenes" id="inputImagen">
-=======
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
->>>>>>> eee88c917b96904480471abe2e41cbcbeac48c5d
->>>>>>> Ofertas
     <input type="hidden" name="username" id="username" class="form-control" placeholder="userName" value="{{app.user.username}}">
+    <label for="inputImagen" class="sr-only">Nueva Imagen de Usuario</label>
+    <input type="file" name="imagenes" id="inputImagen">
     <select name="ciudad">
         {% if ciudades %}
             {% for ciudad in ciudades %}
