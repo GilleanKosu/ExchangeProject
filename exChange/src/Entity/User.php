@@ -55,6 +55,11 @@ class User implements UserInterface
      */
     private $ciudad;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imagenUsuario;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -183,6 +188,18 @@ class User implements UserInterface
     public function setCiudad(?Ciudad $ciudad): self
     {
         $this->ciudad = $ciudad;
+
+        return $this;
+    }
+
+    public function getImagenUsuario(): ?string
+    {
+        return $this->imagenUsuario;
+    }
+
+    public function setImagenUsuario(?string $imagenUsuario): self
+    {
+        $this->imagenUsuario = $imagenUsuario;
 
         return $this;
     }
