@@ -60,14 +60,6 @@ class User implements UserInterface
      */
     private $imagenUsuario;
 
-    function __construct($datos){
-        $this->email = $datos ["email"];
-        $this->password = $datos ["password"];
-        $this->nombreUsuario = $datos ["nombreUsuario"];
-        $this->ciudad = $datos ["ciudad"];
-
-    }
-
     public function getId(): ?int
     {
         return $this->id;

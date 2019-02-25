@@ -31,7 +31,12 @@ class DefaultController extends AbstractController
      */
     public function misDatosPersonales()
     {
-        return $this->render('datosPersonales.html.twig');
+        $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
+        $ciudades = $repository2 ->findAll();
+        return $this->render('datosPersonales.html.twig', [
+            'ciudades' => $ciudades
+        ]);
+        
     }
 
     /**
@@ -45,22 +50,26 @@ class DefaultController extends AbstractController
      */
     public function actualizarDatosPersonales(){
 
+        // var_dump($_POST);
         $repository = $this -> getDoctrine() -> getRepository(User::class);
+        $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
+
         $cosa = $_POST['username'];
         $usuario = $repository -> findOneByEmail($cosa);
+        $ciudades = $repository2 ->findAll();
+        $ciudadSeleccionada = $repository2 ->findOneByName($_POST['ciudad']);
 
         $usuario->setNombreUsuario($_POST['nombreUsuario']);
         $usuario->setPassword($_POST['password']);
+        $usuario->setCiudad($ciudadSeleccionada);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->merge($usuario);
         $entityManager->flush();
-        // var_dump($usuario->getNombreUsuario());
-        // $usuarioModificado->;
-
-        // var_dump(participants);
         
-        return $this->render('datosPersonales.html.twig');
+        return $this->render('datosPersonales.html.twig', [
+            'ciudades' => $ciudades
+        ]);
     }
 
 

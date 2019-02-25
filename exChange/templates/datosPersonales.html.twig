@@ -12,6 +12,14 @@
     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
     <input type="hidden" name="username" id="username" class="form-control" placeholder="userName" value="{{app.user.username}}">
 
+    <select name="ciudad">
+        {% if ciudades %}
+            {% for ciudad in ciudades %}
+                <option value="{{ ciudad.nombreC }}">{{ ciudad.nombreC }}</option>
+            {% endfor %}
+        {% endif %}
+    </select>
+
     <button class="btn btn-lg btn-primary" type="submit" formaction="/successLogin/actualizarDatosPersonales">
         Actualizar
     </button>
