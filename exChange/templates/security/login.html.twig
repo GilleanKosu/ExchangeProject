@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}ExChange Login{% endblock %}
 
 {% block body %}
 <div class="central-form">
     <div class ="card">
-        <h1 class="brand-logo form-logo blue-text" id="logo">ExChange</h1>
+        <a href="/"><h1 class="brand-logo form-logo blue-text" id="logo">ExChange</h1></a>
         <form method="post">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -40,9 +40,9 @@
             #}
             <div class="form-buttons"> 
                 <button class="btn btn-lg btn-primary waves-effect waves-light blue" type="submit">
-                    Log in
+                    Iniciar sesión
                 </button>
-                <a class="waves-effect waves-teal btn-flat" href="./register">Ir a Registro</a>
+                <a class="waves-effect waves-teal btn-flat" href="./register">Crear cuenta</a>
             </div>
         </form>
     </div>

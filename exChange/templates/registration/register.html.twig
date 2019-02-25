@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}ExChange Registro{% endblock %}
 
 {% block body %}
     {# <h1 class="topleft">Register</h1> #}
     <div class="central-form">
         <div class ="card">
-            <h1 class="brand-logo form-logo blue-text" id="logo">ExChange</h1>
+            <a href="/"><h1 class="brand-logo form-logo blue-text" id="logo">ExChange</h1></a>
             {{ form_start(registrationForm) }}
                 <div class="row">
                     <div class="input-field col s6">
@@ -40,13 +40,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 browser-default">
+                    <div class="input-field col s12">
                         {{ form_row(registrationForm.ciudad) }}
                     </div>
                 </div>
                 <div class="form-buttons">
-                    <button class="btn waves-effect waves-light blue">Registro</button>
-                    <a class="waves-effect waves-teal btn-flat" href="./login">Ir a Login</a>
+                    <button class="btn waves-effect waves-light blue">Registrarse</button>
+                    <a class="waves-effect waves-teal btn-flat" href="./login">Iniciar Sesión</a>
                 </div>
             {{ form_end(registrationForm) }}
         </div>
