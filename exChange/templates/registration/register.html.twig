@@ -3,14 +3,51 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.nombreUsuario) }}
-        {{ form_row(registrationForm.apellidos) }}
-        {{ form_row(registrationForm.ciudad) }}
-        <button class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+    {# <h1 class="topleft">Register</h1> #}
+    <div class="central-form">
+        <div class ="card">
+            {{ form_start(registrationForm) }}
+                <div class="row">
+                    <div class="input-field col s6">
+                        {# {{ form_row(registrationForm.nombreUsuario) }} #}
+                        {{ form_widget(registrationForm.nombreUsuario) }}
+                        {{ form_help(registrationForm.nombreUsuario) }}
+                        {{ form_label(registrationForm.nombreUsuario, 'Nombre') }}
+                        <span class="font-danger">{{ form_errors(registrationForm.nombreUsuario) }}</span>
+                    </div>
+                    <div class="input-field col s6">
+                        {{ form_widget(registrationForm.apellidos) }}
+                        {{ form_help(registrationForm.apellidos) }}
+                        {{ form_label(registrationForm.apellidos, 'Apellidos') }}
+                        <span class="font-danger">{{ form_errors(registrationForm.apellidos) }}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form_widget(registrationForm.email) }}
+                        {{ form_help(registrationForm.email) }}
+                        {{ form_label(registrationForm.email, 'Email') }}
+                        <span class="font-danger">{{ form_errors(registrationForm.email) }}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ form_widget(registrationForm.plainPassword) }}
+                        {{ form_help(registrationForm.plainPassword) }}
+                        {{ form_label(registrationForm.plainPassword, 'Contraseña') }}
+                        <span class="font-danger">{{ form_errors(registrationForm.plainPassword) }}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 browser-default">
+                        {{ form_row(registrationForm.ciudad) }}
+                    </div>
+                </div>
+                <div class="form-buttons">
+                    <button class="btn waves-effect waves-light blue">Registro</button>
+                    <a class="waves-effect waves-teal btn-flat" href="./login">Ir a Login</a>
+                </div>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
 {% endblock %}

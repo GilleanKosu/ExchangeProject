@@ -3,6 +3,12 @@
     margin: 0;
 }
 
+.topleft {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 header {
     position: fixed;
     top: 0;
@@ -48,5 +54,16 @@ main {
                 }
             }
         }
+    }
+}
+
+.central-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    &>* {
+        padding: 20px;
     }
 }
