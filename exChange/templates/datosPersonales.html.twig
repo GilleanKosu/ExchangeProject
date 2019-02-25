@@ -7,13 +7,16 @@
 
     <h3 class="h3 mb-3 font-weight-normal">Modificar datos personales</h3>
     <label for="inputEmail" class="sr-only">Nuevo nombre de Usuario</label>
-    <input type="text" name="nombreUsuario" id="inputNombreUsuario" class="form-control" placeholder="Nombre Usuario" required autofocus>
+    <input type="text" name="nombreUsuario" id="inputNombreUsuario" class="form-control" placeholder="Nombre Usuario" autofocus>
     <label for="inputPassword" class="sr-only">Nueva Password</label>
+<<<<<<< HEAD
     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
     <label for="inputImagen" class="sr-only">Nueva Imagen de Usuario</label>
     <input type="file" name="imagenes" id="inputImagen">
+=======
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
+>>>>>>> eee88c917b96904480471abe2e41cbcbeac48c5d
     <input type="hidden" name="username" id="username" class="form-control" placeholder="userName" value="{{app.user.username}}">
-
     <select name="ciudad">
         {% if ciudades %}
             {% for ciudad in ciudades %}
@@ -28,7 +31,7 @@
     <button class="btn btn-lg btn-primary" type="submit" formaction="../">
         Dar de baja
     </button>
-    <button class="btn btn-lg btn-primary" type="submit" formaction="../successLogin">
+    <button class="btn btn-lg btn-primary" formaction="../successLogin">
         Volver
     </button>
     
