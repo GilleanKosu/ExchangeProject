@@ -21,6 +21,7 @@
 .form-logo {
     padding-right: 40px !important;
     padding-left: 40px !important;
+    text-align: center;
 }
 
 header {
@@ -85,6 +86,8 @@ main {
     justify-content: center;
     width: 100vw;
     height: 100vh;
+    background-image: url("../images/background.jpg");
+    background-size: cover;
     &>* {
         padding: 20px;
     }
