@@ -13,8 +13,8 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index()
-    {
+    public function index(){
+        
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
         ]);
@@ -24,6 +24,7 @@ class DefaultController extends AbstractController
      */
     public function successLogin()
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('user.html.twig');
     }
     /**
@@ -31,6 +32,7 @@ class DefaultController extends AbstractController
      */
     public function misDatosPersonales()
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
         $ciudades = $repository2 ->findAll();
         return $this->render('datosPersonales.html.twig', [
@@ -59,7 +61,7 @@ class DefaultController extends AbstractController
         $ciudadSeleccionada = $repository2 ->findOneByName($_POST['ciudad']);
 
         $usuario->setNombreUsuario($_POST['nombreUsuario']);
-        $usuario->setPassword($_POST['password']);
+        $usuario->setPassword(password_hash($_POST['password'], PASSWORD_ARGON2I));
         $usuario->setCiudad($ciudadSeleccionada);
 
         if(isset($_FILES['imagenes'])) {
