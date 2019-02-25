@@ -6,25 +6,26 @@
     {# <h1 class="topleft">Register</h1> #}
     <div class="central-form">
         <div class ="card">
+            <h1 class="brand-logo form-logo blue-text" id="logo">ExChange</h1>
             {{ form_start(registrationForm) }}
                 <div class="row">
                     <div class="input-field col s6">
                         {# {{ form_row(registrationForm.nombreUsuario) }} #}
-                        {{ form_widget(registrationForm.nombreUsuario) }}
+                        {{ form_widget(registrationForm.nombreUsuario, { 'attr': {'class': 'validate'} }) }}
                         {{ form_help(registrationForm.nombreUsuario) }}
                         {{ form_label(registrationForm.nombreUsuario, 'Nombre') }}
                         <span class="font-danger">{{ form_errors(registrationForm.nombreUsuario) }}</span>
                     </div>
                     <div class="input-field col s6">
-                        {{ form_widget(registrationForm.apellidos) }}
+                        {{ form_widget(registrationForm.apellidos, { 'attr': {'class': 'validate'} }) }}
                         {{ form_help(registrationForm.apellidos) }}
                         {{ form_label(registrationForm.apellidos, 'Apellidos') }}
                         <span class="font-danger">{{ form_errors(registrationForm.apellidos) }}</span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12">
-                        {{ form_widget(registrationForm.email) }}
+                    <div class="input-field col s12 validate">
+                        {{ form_widget(registrationForm.email, { 'attr': {'class': 'validate'} }) }}
                         {{ form_help(registrationForm.email) }}
                         {{ form_label(registrationForm.email, 'Email') }}
                         <span class="font-danger">{{ form_errors(registrationForm.email) }}</span>
@@ -32,7 +33,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        {{ form_widget(registrationForm.plainPassword) }}
+                        {{ form_widget(registrationForm.plainPassword, { 'attr': {'class': 'validate'} }) }}
                         {{ form_help(registrationForm.plainPassword) }}
                         {{ form_label(registrationForm.plainPassword, 'Contraseña') }}
                         <span class="font-danger">{{ form_errors(registrationForm.plainPassword) }}</span>
