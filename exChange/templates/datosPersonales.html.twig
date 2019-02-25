@@ -3,7 +3,7 @@
 {% block title %}Datos personales{% endblock %}
 
 {% block body %}
-<form method="post">
+<form method="post" action="./actualizarDatos personales">
 
     <h3 class="h3 mb-3 font-weight-normal">Modificar datos personales</h3>
     <label for="inputEmail" class="sr-only">Email</label>
@@ -14,5 +14,13 @@
     <button class="btn btn-lg btn-primary" type="submit">
         Sign in
     </button>
+    <button class="btn btn-lg btn-primary" type="submit" formaction="../successLogin">
+        Dar de baja
+    </button>
+    <button class="btn btn-lg btn-primary" type="submit" formaction="../successLogin">
+        Volver
+    </button>
+    
 </form>
+
 {% endblock %}
