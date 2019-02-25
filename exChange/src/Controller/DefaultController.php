@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\User;
+use App\Entity\Ciudad;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,44 +44,24 @@ class DefaultController extends AbstractController
      * @Route("/successLogin/actualizarDatosPersonales", name="actualizarDatosPersonales")
      */
     public function actualizarDatosPersonales(){
+
+        $repository = $this -> getDoctrine() -> getRepository(User::class);
+        $cosa = $_POST['username'];
+        $usuario = $repository -> findOneByEmail($cosa);
+
+        $usuario->setNombreUsuario($_POST['nombreUsuario']);
+        $usuario->setPassword($_POST['password']);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->merge($usuario);
+        $entityManager->flush();
+        // var_dump($usuario->getNombreUsuario());
+        // $usuarioModificado->;
+
+        // var_dump(participants);
         
         return $this->render('datosPersonales.html.twig');
     }
 
-    /**
-     * @Route("/confirmedAttendees", name="confirmedAttendees")
-     */
-    public function confirmedAttendees (Request $request): Response
-    {
-    	$repository = $this -> getDoctrine() -> getRepository(Participants::class);
-    	$participants = $repository -> findAll();
-
-    	if (isset($_POST['candidato'])) {
-
-    		foreach ($_POST['candidato'] as $key) {
-
-    			$participant = $repository -> findOneByNif($key);
-
-                if ($participant->getAttended()) {
-                    $participant -> setAttended (0);
-                } else {
-                    $participant -> setAttended (1);
-                }
-
-    			$entityManager = $this->getDoctrine()->getManager();
-
-    			$entityManager->merge($participant);
-
-    			$entityManager->flush();
-
-	
-    		}
-    	}
-
-    	return $this->render('administrator.html.twig', [
-            'listOfParticipants' => $participants
-        ]);
-
-    }
 
 }
