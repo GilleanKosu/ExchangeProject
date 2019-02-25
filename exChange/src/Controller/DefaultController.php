@@ -79,6 +79,14 @@ class DefaultController extends AbstractController
             'ciudades' => $ciudades
         ]);
     }
+    /**
+     * @Route("/contacto", name="contacto")
+     */
+    public function contacto() {
+
+        return $this->render('contacto.html.twig');
+        
+    }
 
 
 }
