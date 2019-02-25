@@ -10,5 +10,4 @@ $(function () {
     $('#clearInput').click(function () {
         $('#search').val(" ");
     });
-    $('#registration_form_ciudad').hide();
 })
