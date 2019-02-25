@@ -50,7 +50,6 @@ class DefaultController extends AbstractController
      */
     public function actualizarDatosPersonales(){
 
-        // var_dump($_POST);
         $repository = $this -> getDoctrine() -> getRepository(User::class);
         $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
 
@@ -62,6 +61,13 @@ class DefaultController extends AbstractController
         $usuario->setNombreUsuario($_POST['nombreUsuario']);
         $usuario->setPassword($_POST['password']);
         $usuario->setCiudad($ciudadSeleccionada);
+
+        if(isset($_FILES['imagenes'])) {
+
+            move_uploaded_file($_FILES['imagenes']['tmp_name'], '../assets/images/'.$_FILES['imagenes']['name']);
+            $usuario->setImagenUsuario($_FILES['imagenes']['name']);
+
+         }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->merge($usuario);
