@@ -6,20 +6,20 @@
 <header>
   <nav>
     <div class="nav-wrapper blue">
-      <a href="#!" class="brand-logo" id="logo">ExChange</a>
+      <a href="/" class="brand-logo" id="logo">ExChange</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         {# <li><a class="waves-effect waves-light modal-trigger"><i class="material-icons left">message</i>Mensajes</a></li> #}
-        <li><a class="waves-effect waves-light modal-trigger" href="./login"><i class="material-icons left">person</i>Log In</a></li>
-        <li><a class="waves-effect waves-light modal-trigger" href="#searchModal"><i class="material-icons left">search</i>Busqueda</a></li>
+        <li><a class="waves-effect waves-light blue-text text-darken-4" href="./login"><i class="material-icons left">person</i>Cuenta</a></li>
+        <li><a class="waves-effect waves-light modal-trigger blue-text text-darken-4" href="#searchModal"><i class="material-icons left">search</i>Buscar</a></li>
       </ul>
     </div>
   </nav>
 </header>
 <ul class="sidenav" id="mobile-demo">
   {# <li><a class="waves-effect waves-light modal-trigger"><i class="material-icons left">message</i>Mensajes</a></li> #}
-  <li><a class="waves-effect waves-light modal-trigger" href="./login"><i class="material-icons left">person</i>Cuenta</a></li>
-  <li><a class="waves-effect waves-light modal-trigger" href="#searchModal"><i class="material-icons left">search</i>Busqueda</a></li>
+  <li><a class="waves-effect waves-light" href="./login"><i class="material-icons left">person</i>Cuenta</a></li>
+  <li><a class="waves-effect waves-light modal-trigger" href="#searchModal"><i class="material-icons left">search</i>Buscar</a></li>
 </ul>
 <div id="searchModal" class="modal">
   <form action="./search" method="GET" name="searchForm">
@@ -71,30 +71,47 @@
   </form>
 </div>
 <main>
+    <h1 class="page-title blue-text">Contacto</h1>
     <div class="contact-wrapper">
         <section>
             <h2 class="section-title blue-text">Información</h2>
+            <p>Exchange es una web en la que se intercambian servicios entre profesionales, la moneda de cambio es el tiempo.</p>
         </section>
         <section>
+          <form action="./contacto" method="POST">
             <div class="form-wrapper">
                 <div class="row">
-                    <div class="input-field col s6">
-                        <input type="text" name="name" id="name">
+                    <div class="input-field col s12 m6">
+                        <input type="text" name="name" id="name" required>
                         <label for="name">Nombre</label>
                     </div>
-                    <div class="input-field col s6">
-                        <input type="email" name="email" id="email">
+                    <div class="input-field col s12 m6">
+                        <input type="email" name="email" id="email" required>
                         <label for="email">Email</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="contact-info" class="materialize-textarea"></textarea>
+                        <textarea id="contact-info" name="contact-info" class="materialize-textarea" required></textarea>
                         <label for="contact-info">Información</label>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <button type="submit" name="contact-submit" class="btn waves-effect waves-light blue">ENVIAR</button>
+                    </div>
+                </div>
             </div>
+          </form>
         </section>
     </div>
 </main>
+<footer>
+    <section class="copyright white-text">
+      <i class="material-icons">copyright</i><p>ExChange 2019</p>
+    </section>
+    <section class="legal white-text">
+      <i class="material-icons">info</i><a href="/legal">Aviso legal</a>
+    </section>
+</footer>
 {% endblock %}

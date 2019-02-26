@@ -69,6 +69,9 @@ main {
             padding-left: 30px;
             font-weight: lighter;
             text-transform: uppercase;
+            @media (max-width: 800px) {
+                font-size: 30px;
+            }
         }
         & .services-list {
             width: 100%;
@@ -97,7 +100,64 @@ main {
     }
 }
 
+/* FOOTER GENERICO */
+
+$footer-height: 70px;
+html {
+    position: relative;
+    min-height: 100vh;
+}
+
+footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: $footer-height;
+    background-image: url("../images/background.jpg");
+    background-size: 100% auto;
+    background-position: bottom;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    & .copyright {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        font-size: 1.1em;
+        & i {
+            font-size: 32px;
+            padding: 0 10px;
+        }
+    }
+    & .legal {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        & a {
+            color: white;
+            padding: 0 30px 0 5px;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+main {
+    padding-bottom: $footer-height;
+}
+
 /* Contacto */
+
+.page-title {
+    text-align: center;
+    font-size: 6em;
+    padding-top: 30px;
+    font-weight: lighter;
+    text-transform: uppercase;
+}
 
 .contact-wrapper {
     display: inline-flex;
@@ -105,8 +165,35 @@ main {
     justify-content: space-evenly;
     &>*:first-child {
         border-right: 2px solid #2196f3;
+        & p {
+            padding: 40px;
+        }
+    }
+    &>*:last-child {
+        padding: 40px;
     }
 }
+
+@media (max-width: 800px) {
+    .page-title {
+        font-size: 4em;
+    }
+    .contact-wrapper {
+        display: flex;
+        flex-flow: wrap;
+        &>*:first-child {
+            border-right: 0px solid #2196f3;
+            & p {
+                padding: 30px;
+            }
+        }
+        &>*:last-child {
+            padding: 30px;
+        }
+    }
+}
+
+/* LOGIN Y REGISTRO */
 
 .central-form {
     display: flex;
@@ -121,18 +208,34 @@ main {
     }
 }
 
+/* Aviso legal */
+
+.legal-warning {
+    width: 80%;
+    margin: 0 auto;
+    & h2 {
+        font-size: 24px;
+        color: #2196f3;
+    }
+    @media (max-width: 800px) {
+        width: 100%;
+    }
+}
+
 /* ESTILOS INPUTS */
 
 $color: #2196f3;
 /* label focus color */
 
-.input-field input:focus+label {
+.input-field input:focus+label,
+.input-field textarea:focus+label {
     color: $color !important;
 }
 
 /* label underline focus color */
 
-.input-field input:focus {
+.input-field input:focus,
+.input-field textarea:focus {
     border-bottom: 1px solid $color !important;
     box-shadow: 0 1px 0 0 $color !important;
 }
