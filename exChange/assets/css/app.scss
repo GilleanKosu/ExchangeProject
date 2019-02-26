@@ -14,7 +14,7 @@
     font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
     padding-left: 20px;
     .color {
-        color: lightblue;
+        color: #2979ff;
         font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
     }
 }
@@ -159,6 +159,9 @@ footer {
 
 main {
     padding-bottom: $footer-height;
+    &>*:last-child {
+        padding-bottom: 40px;
+    }
 }
 
 /* Contacto */
