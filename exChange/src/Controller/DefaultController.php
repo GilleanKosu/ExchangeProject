@@ -3,10 +3,13 @@
 namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Ciudad;
+use App\Entity\Categoria;
+use App\Entity\Servicio;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class DefaultController extends AbstractController
 {
@@ -14,7 +17,7 @@ class DefaultController extends AbstractController
      * @Route("/", name="index")
      */
     public function index(){
-        
+
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
         ]);
@@ -25,7 +28,11 @@ class DefaultController extends AbstractController
     public function successLogin()
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        return $this->render('user.html.twig');
+        $repository = $this -> getDoctrine() -> getRepository(Categoria::class);
+        $categorias = $repository ->findAll();
+        return $this->render('user.html.twig', [
+            'categorias' => $categorias
+        ]);
     }
     /**
      * @Route("/successLogin/misDatosPersonales", name="misDatosPersonales")

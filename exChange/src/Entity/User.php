@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -59,6 +61,16 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $imagenUsuario;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Servicio", mappedBy="usuario")
+     */
+    private $servicios;
+
+    public function __construct()
+    {
+        $this->servicios = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -200,6 +212,34 @@ class User implements UserInterface
     public function setImagenUsuario(?string $imagenUsuario): self
     {
         $this->imagenUsuario = $imagenUsuario;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Servicio[]
+     */
+    public function getServicios(): Collection
+    {
+        return $this->servicios;
+    }
+
+    public function addServicio(Servicio $servicio): self
+    {
+        if (!$this->servicios->contains($servicio)) {
+            $this->servicios[] = $servicio;
+            $servicio->addUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeServicio(Servicio $servicio): self
+    {
+        if ($this->servicios->contains($servicio)) {
+            $this->servicios->removeElement($servicio);
+            $servicio->removeUsuario($this);
+        }
 
         return $this;
     }

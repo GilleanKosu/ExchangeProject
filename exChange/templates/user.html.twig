@@ -142,13 +142,25 @@
     </div>
   </section>
   <section class="most-demanded-services">
-    <h2 class="section-title blue-text">Servicios más demandados</h2>
+    <h2 class="section-title blue-text">Introducir nueva</h2>
     <div class="services-list">
       <article class="card blue accent-1">
-        <p class="user-text">Manuel Luján Jiménez</p>
-        <h3>Saco a pasear a mascotas</h3>
-        <h4>1h</h4>
-        <p class="category-text">Mascotas</p>
+
+        <form>
+          <p class="user-text">Manuel Luján Jiménez</p>
+
+          <select name="servicio" class="category-text">
+          {% if categorias %}
+              {% for categoria in categorias %}
+                  <option value="{{ categoria.getNombreCategoria }}">{{ categoria.getNombreCategoria }}</option>
+              {% endfor %}
+          {% endif %}
+          <label for="inputDescripcion" class="sr-only" laceholder="Descripcion"></label>
+          <input type="text" name="descripcion" id="inputDescripcion" class="form-control" placeholder="Descripcion" autofocus>
+          <input type="number" id="inputTime" class="form-control" min="1" max="6" placeholder="Numero de horas">
+          <button class="btn btn-lg btn-primary" type="submit" formaction="/">Añadir</button>
+        </select>
+      </form>
       </article>
     </div>
   </section>
