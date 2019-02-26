@@ -176,9 +176,17 @@ class DefaultController extends AbstractController
 
         }
 
-       
+    }
+
+    /**
+     * @Route("/legal", name="avisoLegal")
+     */
+    public function avisoLegal() {
+
+        return $this->render('legal.html.twig');
         
     }
+
 
 
 }
