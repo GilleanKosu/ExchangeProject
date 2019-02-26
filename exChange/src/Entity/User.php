@@ -67,9 +67,15 @@ class User implements UserInterface
      */
     private $servicios;
 
-    public function __construct()
+
+    
+    private $user;
+
+
+    public function __construct(TokenStorageInterface $tokenStorage)
     {
         $this->servicios = new ArrayCollection();
+        $this->user = $tokenStorage->getToken()->getUser();
     }
 
     public function getId(): ?int

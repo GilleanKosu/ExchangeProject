@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-
+use Symfony\Component\Security\Core\Security;
 class DefaultController extends AbstractController
 {
     /**
@@ -132,6 +132,8 @@ class DefaultController extends AbstractController
      */
     public function buscarservicios() {
 
+        var_dump();
+        die();
         //Repositorios y metodos de las cosas con las que necesitamos trabajar o pasar a la vista
         $repository = $this -> getDoctrine() -> getRepository(Ciudad::class);
         $ciudad = $repository -> findOneByName($_POST['ciudades']);
@@ -184,6 +186,14 @@ class DefaultController extends AbstractController
     public function avisoLegal() {
 
         return $this->render('legal.html.twig');
+        
+    }
+    /**
+     * @Route("/search", name="busqueda")
+     */
+    public function busqueda() {
+
+        return $this->render('search.html.twig');
         
     }
 
