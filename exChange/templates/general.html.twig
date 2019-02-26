@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">{# 
+        <style>
+
+            #registration_form_ciudad {
+                display:block;
+            }
+
+        </style> #}
+    {% endblock %}
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-wrapper blue">
+                <a href="/" class="brand-logo" id="logo">E<span class="color">x</span>Chang<span
+                        class="color">e</span></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    {# <li><a class="waves-effect waves-light modal-trigger"><i class="material-icons left">message</i>Mensajes</a></li> #}
+                    {% if user != 'anon.' %}
+                    <li><a class="waves-effect waves-light modal-trigger blue-text text-darken-4"
+                            href="#servicesModal"><i class="material-icons left">fiber_new</i>Nuevo servicio</a></li>
+                    <li><a class="waves-effect waves-light blue-text text-darken-4"
+                            href="/successLogin/misDatosPersonales"><i class="material-icons left">person</i>Perfil</a>
+                    </li>
+                    <li><a class="waves-effect waves-light blue-text text-darken-4" href="/contacto"><i
+                                class="material-icons left">contact_mail</i>Contacto</a></li>
+                    <li><a class="waves-effect waves-light blue-text text-darken-4" href="/logout"><i
+                                class="material-icons left">input</i>Cerrar sesión</a></li>
+                    {% else %}
+                    <li><a class="waves-effect waves-light blue-text text-darken-4" href="/contacto"><i
+                                class="material-icons left">contact_mail</i>Contacto</a></li>
+                    <li><a class="waves-effect waves-light blue-text text-darken-4" href="/login"><i
+                                class="material-icons left">person</i>Cuenta</a></li>
+                    {% endif %}
+                    <li><a class="waves-effect waves-light modal-trigger blue-text text-darken-4" href="#searchModal"><i
+                                class="material-icons left">search</i>Busqueda</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <ul class="sidenav" id="mobile-demo">
+        {# <li><a class="waves-effect waves-light modal-trigger"><i class="material-icons left">message</i>Mensajes</a></li> #}
+        {# <li><a class="waves-effect waves-light modal-trigger blue-text text-darken-4" href="#servicesModal"><i
+                    class="material-icons left">fiber_new</i>Nuevo servicio</a></li>
+        <li><a class="waves-effect waves-light" href="./successLogin/misDatosPersonales"><i
+                    class="material-icons left">person</i>Perfil</a></li>
+        <li><a class="waves-effect waves-light" href="/logout"><i class="material-icons left">input</i>Cerrar sesión</a>
+        </li>
+        <li><a class="waves-effect waves-light modal-trigger" href="#searchModal"><i
+                    class="material-icons left">search</i>Busqueda</a></li> #}
+        {% if user != 'anon.' %}
+        <li><a class="waves-effect waves-light modal-trigger" href="#servicesModal"><i
+                    class="material-icons left">fiber_new</i>Nuevo servicio</a></li>
+        <li><a class="waves-effect waves-light" href="/successLogin/misDatosPersonales"><i
+                    class="material-icons left">person</i>Perfil</a>
+        </li>
+        <li><a class="waves-effect waves-light" href="/contacto"><i
+                    class="material-icons left">contact_mail</i>Contacto</a></li>
+        <li><a class="waves-effect waves-light" href="/logout"><i
+                    class="material-icons left">input</i>Cerrar sesión</a></li>
+        {% else %}
+        <li><a class="waves-effect waves-light" href="/login"><i
+                    class="material-icons left">person</i>Cuenta</a></li>
+        {% endif %}
+        <li><a class="waves-effect waves-light modal-trigger" href="#searchModal"><i
+                    class="material-icons left">search</i>Busqueda</a></li>
+    </ul>
+    <div id="searchModal" class="modal">
+        <form action="./search" method="GET" name="searchForm">
+            <div class="modal-content">
+                <nav>
+                    <div class="nav-wrapper blue">
+                        <div class="input-field">
+                            <input id="q" type="search" name="q">
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons" id="clearInput">close</i>
+                        </div>
+                    </div>
+                </nav>
+                <br>
+                <div class="input-field col s12">
+                    <h5 class="blue-text">Filtrar Categoría</h5>
+                    <select class="blue" name="cat">
+                        <option value="none" selected>Escoge una categoría</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+                </div>
+                <div class="input-field col s12">
+                    <h5 class="blue-text">Filtrar Ciudad</h5>
+                    <select class="blue" name="city">
+                        <option value="none" selected>Escoge una ciudad</option>
+                        {# {% if ciudades %}
+                    {% for ciudad in ciudades %}
+                        <option value="{{ ciudad.getNombreC }}">{{ ciudad.getNombreC }}</option>
+                    {% endfor %}
+                {% endif %} #}
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-close waves-effect btn-flat waves-red search-button">Cancelar</a>
+                <button class="modal-close waves-effect blue btn white-text search-button" type="submit">Buscar</button>
+            </div>
+        </form>
+    </div>
+    {% if user != 'anon.' %}
+    <div id="servicesModal" class="modal">
+        <form method="post" action="/enviaroferta">
+            <div class="modal-content">
+                <h5 class="blue-text">Nuevo servicio<h5>
+                        <div class="input-field col s12">
+                            {# <h5 class="blue-text">Categoría</h5> #}
+                            <select name="servicio" class="category-text">
+                                {# {% if categorias %}
+                                {% for categoria in categorias %}
+                                <option value="{{ categoria.getNombreCategoria }}">{{ categoria.getNombreCategoria }}
+                                </option>
+                                {% endfor %}
+                                {% endif %} #}
+
+                            </select>
+                            <label for="servicio" class="sr-only">Categoría</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input type="text" name="descripcion" id="inputDescripcion" class="form-control">
+                            <label for="inputDescripcion" class="sr-only">Descripción</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input type="number" name="duracionservicio" id="inputTime" class="form-control" min="1"
+                                max="6">
+                            <label for="duracionservicio" class="sr-only">Duración del servicio</label>
+                        </div>
+                        <input type="hidden" name="username" id="username" class="form-control" value="{{user}}">
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-close waves-effect btn-flat waves-red">Cancelar</a>
+                <button class="modal-close waves-effect blue btn white-text" type="submit">Crear servicio</button>
+                {# <button class="btn btn-lg btn-primary modal-close" type="submit">Crear servicio</button> #}
+            </div>
+        </form>
+    </div>
+    {% endif %}
+
+
+    {% block body %}
+
+    {% endblock %}
+    <footer>
+        <section class="copyright white-text">
+            <i class="material-icons">copyright</i>
+            <p>ExChange 2019</p>
+        </section>
+        <section class="legal blue-text text-darken-4">
+            <i class="material-icons">info</i><a href="/legal">Aviso legal</a>
+        </section>
+    </footer>
+    {% block javascripts %}
+
+    <script src="{{ asset('build/runtime.js') }}"></script>
+    <script src="{{ asset('build/app.js') }}"></script>
+    {% endblock %}
+</body>
+
+</html>
