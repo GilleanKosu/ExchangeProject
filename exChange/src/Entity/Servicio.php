@@ -21,11 +21,6 @@ class Servicio
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $horas_servicio;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
     private $duracion_servicio;
 
     /**
@@ -48,6 +43,11 @@ class Servicio
      */
     private $usuario;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $hora_servicio;
+
     public function __construct()
     {
         $this->usuario = new ArrayCollection();
@@ -56,18 +56,6 @@ class Servicio
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getHorasServicio(): ?int
-    {
-        return $this->horas_servicio;
-    }
-
-    public function setHorasServicio(?int $horas_servicio): self
-    {
-        $this->horas_servicio = $horas_servicio;
-
-        return $this;
     }
 
     public function getDuracionServicio(): ?int
@@ -140,6 +128,18 @@ class Servicio
         if ($this->usuario->contains($usuario)) {
             $this->usuario->removeElement($usuario);
         }
+
+        return $this;
+    }
+
+    public function getHoraServicio(): ?string
+    {
+        return $this->hora_servicio;
+    }
+
+    public function setHoraServicio(?string $hora_servicio): self
+    {
+        $this->hora_servicio = $hora_servicio;
 
         return $this;
     }

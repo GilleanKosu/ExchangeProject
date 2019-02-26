@@ -46,5 +46,15 @@ class CategoriaRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+    
     */
+    public function findOneByName($value): ?Categoria
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.nombre_categoria = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }

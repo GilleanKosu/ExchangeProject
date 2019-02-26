@@ -94,6 +94,30 @@ class DefaultController extends AbstractController
         return $this->render('contacto.html.twig');
         
     }
+    /**
+     * @Route("/enviaroferta", name="ofertas")
+     */
+    public function ofertas() {
+        
+        // $repository = $this -> getDoctrine() -> getRepository(User::class);
+        // $usuario = $repository -> findOneByEmail($_POST['username']);
+        $repository2 = $this -> getDoctrine() -> getRepository(Categoria::class);
+        $categoria = $repository2 -> findOneByName($_POST['servicio']);
+
+        $crearOferta = new Servicio ();
+
+        $crearOferta->setDuracionServicio($_POST['duracionservicio']);
+        $crearOferta->setDescripcionServicio($_POST['descripcion']);
+        $crearOferta->setIdCategoria($categoria);
+        $crearOferta->setHorasDia($_POST['duracionservicio']);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($crearOferta);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('successLogin');
+        
+    }
 
 
 }
