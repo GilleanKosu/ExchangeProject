@@ -5,5 +5,11 @@
 #        - App\Entity\Category
 #        - App\Entity\User
 easy_admin:
-   entities:
+    site_name: '<img src="https://www.robertwent.com/wp-content/uploads/2017/07/symfony_logo.png" width="100px"/>'
+    entities:
        - App\Entity\User
+       - App\Entity\Ciudad
+    design:
+        menu:
+            - { entity: 'User', label: 'Usuarios', icon: 'user' }
+            - { entity: 'Ciudad', label: 'Ciudades', icon: 'tag' }

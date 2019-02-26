@@ -28,9 +28,16 @@ class Ciudad
      */
     private $nombreC;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Servicio", mappedBy="ciudad_servicio")
+     */
+    private $servicios;
+
     public function __construct()
     {
         $this->nombreCiudad = new ArrayCollection();
+        $this->servicio = new ArrayCollection();
+        $this->servicios = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,4 +91,36 @@ class Ciudad
     {
         return $this->nombreC;
     }
+
+    /**
+     * @return Collection|Servicio[]
+     */
+    public function getServicios(): Collection
+    {
+        return $this->servicios;
+    }
+
+    public function addServicio(Servicio $servicio): self
+    {
+        if (!$this->servicios->contains($servicio)) {
+            $this->servicios[] = $servicio;
+            $servicio->setCiudadServicio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeServicio(Servicio $servicio): self
+    {
+        if ($this->servicios->contains($servicio)) {
+            $this->servicios->removeElement($servicio);
+            // set the owning side to null (unless already changed)
+            if ($servicio->getCiudadServicio() === $this) {
+                $servicio->setCiudadServicio(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

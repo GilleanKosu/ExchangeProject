@@ -18,15 +18,23 @@ class DefaultController extends AbstractController
      */
     public function index(){
 
+        $repository = $this -> getDoctrine() -> getRepository(Categoria::class);
+        $categorias = $repository ->findAll();
+
+        $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
+        $ciudades = $repository2 ->findAll();
+
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
+            'categorias' => $categorias,
+            'ciudades' => $ciudades
         ]);
     }
     /**
      * @Route("/successLogin", name="successLogin")
      */
-    public function successLogin()
-    {
+    public function successLogin(){
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $repository = $this -> getDoctrine() -> getRepository(Categoria::class);
         $categorias = $repository ->findAll();
@@ -37,8 +45,8 @@ class DefaultController extends AbstractController
     /**
      * @Route("/successLogin/misDatosPersonales", name="misDatosPersonales")
      */
-    public function misDatosPersonales()
-    {
+    public function misDatosPersonales(){
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
         $ciudades = $repository2 ->findAll();
@@ -98,7 +106,7 @@ class DefaultController extends AbstractController
      * @Route("/enviaroferta", name="ofertas")
      */
     public function ofertas() {
-        
+
         // $repository = $this -> getDoctrine() -> getRepository(User::class);
         // $usuario = $repository -> findOneByEmail($_POST['username']);
         $repository2 = $this -> getDoctrine() -> getRepository(Categoria::class);
@@ -116,6 +124,59 @@ class DefaultController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('successLogin');
+        
+    }
+
+    /**
+     * @Route("/buscarservicios", name="buscarservicios")
+     */
+    public function buscarservicios() {
+
+        //Repositorios y metodos de las cosas con las que necesitamos trabajar o pasar a la vista
+        $repository = $this -> getDoctrine() -> getRepository(Ciudad::class);
+        $ciudad = $repository -> findOneByName($_POST['ciudades']);
+
+        $repository2 = $this -> getDoctrine() -> getRepository(Categoria::class);
+        $categorias = $repository2 ->findAll();
+
+        $repository3 = $this -> getDoctrine() -> getRepository(Ciudad::class);
+        $ciudades = $repository3 ->findAll();
+        
+        //Obtenemos todos los servicios de esa ciudad
+        $serviciosPorCiudad = $ciudad -> getServicios();
+
+        //Recorremos esos servicios y buscamos cual coincide con la categoria escogida
+        foreach ($serviciosPorCiudad as $key => $value) {
+
+            //Guardamos esos servicios para luego pasarlos por parametro
+            if ( ($value->getIdCategoria()) == ($_POST['categorias'])) {
+                $listaServicios[] = $serviciosPorCiudad[$key];
+            }
+        }
+
+        //Si ha encontrado los servicios que se correspondan los pasará a la vista
+        if(isset($listaServicios)) {
+
+            return $this->render('default/index.html.twig', [
+                'controller_name' => 'DefaultController',
+                'categorias' => $categorias,
+                'ciudades' => $ciudades,
+                'serviciosPorCiudad' => $listaServicios,
+            ]);
+            
+        } else { //Si no los ha encontrado generará una variable de error que se mostrará en la vista
+
+            $error = "No se ha encontrado ningun servicio para esa ciudad";
+            return $this->render('default/index.html.twig', [
+                'controller_name' => 'DefaultController',
+                'categorias' => $categorias,
+                'ciudades' => $ciudades,
+                'errorServicio' => $error,
+            ]);
+
+        }
+
+       
         
     }
 

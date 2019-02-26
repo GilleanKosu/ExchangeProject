@@ -50,6 +50,11 @@ class Categoria
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->nombre_categoria;
+    }
+
     /**
      * @return Collection|Servicio[]
      */

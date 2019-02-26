@@ -48,6 +48,11 @@ class Servicio
      */
     private $hora_servicio;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ciudad", inversedBy="servicios")
+     */
+    private $ciudad_servicio;
+
     public function __construct()
     {
         $this->usuario = new ArrayCollection();
@@ -143,4 +148,17 @@ class Servicio
 
         return $this;
     }
+
+    public function getCiudadServicio(): ?Ciudad
+    {
+        return $this->ciudad_servicio;
+    }
+
+    public function setCiudadServicio(?Ciudad $ciudad_servicio): self
+    {
+        $this->ciudad_servicio = $ciudad_servicio;
+
+        return $this;
+    }
+
 }

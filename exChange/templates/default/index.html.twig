@@ -98,6 +98,51 @@
       </article>
     </div>
   </section>
+  
+  <section class="most-demanded-services">
+    <h2 class="section-title blue-text">Buscador de ofertas</h2>
+    <div class>
+
+      <form method="post" action="/buscarservicios">
+
+        <h3>Nombre de la categoria</h3>
+       <select name="categorias" class="category-text">
+            {% if categorias %}
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.getNombreCategoria }}">{{ categoria.getNombreCategoria }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+
+        <h3>Nombre de la ciudad</h3>
+        <select name="ciudades" class="category-text">
+            {% if ciudades %}
+                {% for ciudad in ciudades %}
+                    <option value="{{ ciudad.getNombreC }}">{{ ciudad.getNombreC }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+        <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
+      </form>
+
+      <article class="card blue accent-1">
+      {% if serviciosPorCiudad is defined %}
+          <ul>
+            {% for servicios in serviciosPorCiudad %}
+                <li>{{ servicios.getDescripcionServicio }}</li>
+            {% endfor %}
+          <ul>
+      {% endif %}
+      
+      {% if errorServicio is defined %}
+          <h3>{{ errorServicio }}<h3>
+      {% endif %}
+
+          
+    </div>
+  </section>
+
+
 </main>
 <footer>
     <section class="copyright white-text">
