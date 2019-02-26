@@ -149,12 +149,16 @@ class DefaultController extends AbstractController
 
         $token = $this->get('security.token_storage')->getToken();
         $user = $token->getUser();
-
+        var_dump($user->getId);
+        die();
         $repository = $this -> getDoctrine() -> getRepository(Ciudad::class);
         $repository2 = $this -> getDoctrine() -> getRepository(Categoria::class);
 
+        $repository3 = $this -> getDoctrine() -> getRepository(User::class);
+
         $categorias = $repository ->findAll();
         $ciudades = $repository2 ->findAll();
+        $usuario = $repository3 ->findOneByEmail();
 
         $categoria = $repository2 -> findOneByName($_POST['servicio']);
 
