@@ -13,6 +13,10 @@
 #logo {
     font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
     padding-left: 20px;
+    .color {
+        color: lightblue;
+        font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
+    }
 }
 
 .no-padding {
@@ -57,10 +61,13 @@ header {
 
 #searchModal {
     height: 80% !important;
-    & #searchButton {
+    & .search-button {
         position: absolute;
         bottom: 30px;
         right: 30px;
+        &:first-child {
+            right: 135px;
+        }
     }
 }
 
