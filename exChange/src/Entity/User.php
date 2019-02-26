@@ -68,14 +68,9 @@ class User implements UserInterface
     private $servicios;
 
 
-    
-    private $user;
-
-
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct()
     {
         $this->servicios = new ArrayCollection();
-        $this->user = $tokenStorage->getToken()->getUser();
     }
 
     public function getId(): ?int
@@ -249,4 +244,10 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->email;
+    }
+
 }

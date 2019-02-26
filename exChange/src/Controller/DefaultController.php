@@ -18,6 +18,9 @@ class DefaultController extends AbstractController
      */
     public function index(){
 
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
+
         $repository = $this -> getDoctrine() -> getRepository(Categoria::class);
         $categorias = $repository ->findAll();
 
@@ -27,19 +30,24 @@ class DefaultController extends AbstractController
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
             'categorias' => $categorias,
-            'ciudades' => $ciudades
+            'ciudades' => $ciudades,
+            'user' => $user
         ]);
     }
     /**
      * @Route("/successLogin", name="successLogin")
      */
     public function successLogin(){
+        
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $repository = $this -> getDoctrine() -> getRepository(Categoria::class);
         $categorias = $repository ->findAll();
         return $this->render('user.html.twig', [
-            'categorias' => $categorias
+            'categorias' => $categorias, 
+            'user' => $user
         ]);
     }
     /**
@@ -47,11 +55,15 @@ class DefaultController extends AbstractController
      */
     public function misDatosPersonales(){
 
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
         $ciudades = $repository2 ->findAll();
         return $this->render('datosPersonales.html.twig', [
-            'ciudades' => $ciudades
+            'ciudades' => $ciudades, 
+            'user' => $user
         ]);
         
     }
@@ -66,6 +78,9 @@ class DefaultController extends AbstractController
      * @Route("/successLogin/actualizarDatosPersonales", name="actualizarDatosPersonales")
      */
     public function actualizarDatosPersonales(){
+
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
 
         $repository = $this -> getDoctrine() -> getRepository(User::class);
         $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
@@ -91,7 +106,8 @@ class DefaultController extends AbstractController
         $entityManager->flush();
         
         return $this->render('datosPersonales.html.twig', [
-            'ciudades' => $ciudades
+            'ciudades' => $ciudades,
+            'user' => $user
         ]);
     }
     /**
@@ -99,7 +115,12 @@ class DefaultController extends AbstractController
      */
     public function contacto() {
 
-        return $this->render('contacto.html.twig');
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
+
+        return $this->render('contacto.html.twig', [
+            'user' => $user
+        ]);
         
     }
     /**
@@ -107,8 +128,9 @@ class DefaultController extends AbstractController
      */
     public function ofertas() {
 
-        // $repository = $this -> getDoctrine() -> getRepository(User::class);
-        // $usuario = $repository -> findOneByEmail($_POST['username']);
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
+
         $repository2 = $this -> getDoctrine() -> getRepository(Categoria::class);
         $categoria = $repository2 -> findOneByName($_POST['servicio']);
 
@@ -131,9 +153,10 @@ class DefaultController extends AbstractController
      * @Route("/buscarservicios", name="buscarservicios")
      */
     public function buscarservicios() {
+        
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
 
-        var_dump();
-        die();
         //Repositorios y metodos de las cosas con las que necesitamos trabajar o pasar a la vista
         $repository = $this -> getDoctrine() -> getRepository(Ciudad::class);
         $ciudad = $repository -> findOneByName($_POST['ciudades']);
@@ -164,6 +187,7 @@ class DefaultController extends AbstractController
                 'categorias' => $categorias,
                 'ciudades' => $ciudades,
                 'serviciosPorCiudad' => $listaServicios,
+                'user' => $user
             ]);
             
         } else { //Si no los ha encontrado generará una variable de error que se mostrará en la vista
@@ -174,6 +198,7 @@ class DefaultController extends AbstractController
                 'categorias' => $categorias,
                 'ciudades' => $ciudades,
                 'errorServicio' => $error,
+                'user' => $user
             ]);
 
         }
@@ -185,7 +210,12 @@ class DefaultController extends AbstractController
      */
     public function avisoLegal() {
 
-        return $this->render('legal.html.twig');
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
+
+        return $this->render('legal.html.twig', [
+            'user' => $user
+        ]);
         
     }
     /**
@@ -193,7 +223,11 @@ class DefaultController extends AbstractController
      */
     public function busqueda() {
 
-        return $this->render('search.html.twig');
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
+        return $this->render('search.html.twig', [
+            'user' => $user
+        ]);
         
     }
 
