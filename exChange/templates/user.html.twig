@@ -27,7 +27,7 @@
   <form action="./search" method="GET" name="searchForm">
     <div class="modal-content">
       <nav>
-        <div class="nav-wrapper blue lighten-2">
+        <div class="nav-wrapper blue">
           <div class="input-field">
             <input id="q" type="search" name="q">
             <label class="label-icon" for="search"><i class="material-icons">search</i></label>
@@ -37,8 +37,8 @@
       </nav>
       <br>
       <div class="input-field col s12">
-        <h5>Filtrar Categoría</h5>
-        <select class="browser-default blue lighten-2" name="cat">
+        <h5 class="blue-text">Filtrar Categoría</h5>
+        <select class="blue" name="cat">
           <option value="none"selected>Escoge una categoría</option>
           <option value="1">Option 1</option>
           <option value="2">Option 2</option>
@@ -52,8 +52,8 @@
         </select>
       </div>
       <div class="input-field col s12">
-        <h5>Filtrar Ciudad</h5>
-        <select class="browser-default blue lighten-2" name="city">
+        <h5 class="blue-text">Filtrar Ciudad</h5>
+        <select class="blue" name="city">
           <option value="none"selected>Escoge una ciudad</option>
           <option value="1">Option 1</option>
           <option value="2">Option 2</option>
@@ -68,7 +68,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button class="modal-close waves-effect blue lighten-4 btn-flat" type="submit">Buscar</button>
+      <button class="modal-close waves-effect blue btn-flat white-text" type="submit" id="searchButton">Buscar</button>
     </div>
   </form>
 </div>
@@ -171,7 +171,7 @@
     <section class="copyright white-text">
       <i class="material-icons">copyright</i><p>ExChange 2019</p>
     </section>
-    <section class="legal white-text">
+    <section class="legal blue-text text-darken-4">
       <i class="material-icons">info</i><a href="/legal">Aviso legal</a>
     </section>
 </footer>
