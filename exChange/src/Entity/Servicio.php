@@ -49,7 +49,7 @@ class Servicio
     private $hora_servicio;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Ciudad", inversedBy="servicios")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ciudad", inversedBy="servicios", cascade={"persist"})
      */
     private $ciudad_servicio;
 
@@ -159,6 +159,10 @@ class Servicio
         $this->ciudad_servicio = $ciudad_servicio;
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->descripcion_servicio;
     }
 
 }

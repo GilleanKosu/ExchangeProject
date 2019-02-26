@@ -149,16 +149,18 @@ class DefaultController extends AbstractController
 
         $token = $this->get('security.token_storage')->getToken();
         $user = $token->getUser();
-        var_dump($user->getId);
-        die();
+
         $repository = $this -> getDoctrine() -> getRepository(Ciudad::class);
         $repository2 = $this -> getDoctrine() -> getRepository(Categoria::class);
 
         $repository3 = $this -> getDoctrine() -> getRepository(User::class);
 
+        $repository4 = $this -> getDoctrine() -> getRepository(Servicio::class);
+
         $categorias = $repository ->findAll();
         $ciudades = $repository2 ->findAll();
-        $usuario = $repository3 ->findOneByEmail();
+
+        $usuario = $repository3 ->findOneByEmail($user->getEmail());
 
         $categoria = $repository2 -> findOneByName($_POST['servicio']);
 
@@ -170,14 +172,13 @@ class DefaultController extends AbstractController
         $crearOferta->setHorasDia($_POST['duracionservicio']);
 
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($crearOferta);
+        
+        $user->addServicio($crearOferta);
+
+        $entityManager->merge($user);
         $entityManager->flush();
 
-        return $this->render('datosPersonales.html.twig', [
-            'ciudades' => $ciudades, 
-            'user' => $user,
-            'categorias' => $categorias
-        ]);
+        return $this->render('correcto.html.twig');
         
     }
 
