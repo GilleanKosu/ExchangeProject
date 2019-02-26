@@ -55,10 +55,6 @@ header {
     }
 }
 
-#searchModal {
-    border-radius: 5px !important;
-}
-
 main {
     margin-top: 80px;
     & section,
@@ -159,6 +155,10 @@ main {
     text-transform: uppercase;
 }
 
+.smaller {
+    font-size: 4em;
+}
+
 .contact-wrapper {
     display: inline-flex;
     align-items: center;
@@ -177,6 +177,9 @@ main {
 @media (max-width: 800px) {
     .page-title {
         font-size: 4em;
+    }
+    .smaller {
+        font-size: 2em;
     }
     .contact-wrapper {
         display: flex;
@@ -220,6 +223,24 @@ main {
     @media (max-width: 800px) {
         width: 100%;
     }
+}
+
+/* Modificar datos personales */
+
+.file-type {
+    width: unset !important;
+}
+
+#change-data-form .row {
+    padding: 40px;
+}
+
+.change-data-btns {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 /* ESTILOS INPUTS */
