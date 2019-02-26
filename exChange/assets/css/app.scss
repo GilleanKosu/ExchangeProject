@@ -93,11 +93,32 @@ main {
             justify-content: space-evenly;
             & article {
                 width: 280px;
-                height: 100%;
-                padding: 20px;
+                height: 280px;
+                padding: 15px;
                 position: relative;
+                overflow: hidden;
+                &:hover a {
+                    bottom: -25px;
+                }
+                &::before {
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 30%;
+                    top: -30px;
+                    left: 0px;
+                    background-color: #0d47a1;
+                    transform: skewY(-10deg);
+                }
+                & p:first-child {
+                    position: relative;
+                    color: white;
+                }
                 & h3 {
                     font-size: 35px;
+                    font-weight: lighter;
+                    margin-top: 3rem;
+                    /* font-family: Montserrat, 'Open Sans', Arial, Helvetica, sans-serif; */
                 }
                 & h4 {
                     font-size: 27px;
@@ -106,6 +127,18 @@ main {
                     position: absolute;
                     bottom: 10px;
                     right: 10px;
+                }
+                & a {
+                    position: absolute;
+                    width: 100%;
+                    height: 40%;
+                    left: 0;
+                    bottom: -50%;
+                    transform: skewY(-10deg);
+                    transition: bottom .15s linear;
+                    text-align: center;
+                    font-size: 36px;
+                    padding-top: 10px;
                 }
             }
         }
