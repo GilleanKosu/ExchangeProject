@@ -9,7 +9,9 @@ easy_admin:
     entities:
        - App\Entity\User
        - App\Entity\Ciudad
+       - App\Entity\Categoria
     design:
         menu:
             - { entity: 'User', label: 'Usuarios', icon: 'user' }
             - { entity: 'Ciudad', label: 'Ciudades', icon: 'tag' }
+            - { entity: 'Categoria', label: 'Categorias', icon: 'tag' }
