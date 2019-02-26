@@ -55,6 +55,15 @@ header {
     }
 }
 
+#searchModal {
+    height: 80% !important;
+    & #searchButton {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+    }
+}
+
 main {
     margin-top: 80px;
     & section,
