@@ -67,10 +67,16 @@ class User implements UserInterface
      */
     private $servicios;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Mensajes", mappedBy="destinatario", cascade={"persist"})
+     */
+    private $mensajes;
+
 
     public function __construct()
     {
         $this->servicios = new ArrayCollection();
+        $this->mensajes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -249,5 +255,35 @@ class User implements UserInterface
     {
         return $this->email;
     }
+
+    /**
+     * @return Collection|Mensajes[]
+     */
+    public function getMensajes(): Collection
+    {
+        return $this->mensajes;
+    }
+
+    public function addMensaje(Mensajes $mensaje): self
+    {
+        if (!$this->mensajes->contains($mensaje)) {
+            $this->mensajes[] = $mensaje;
+            $mensaje->addDestinatario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMensaje(Mensajes $mensaje): self
+    {
+        if ($this->mensajes->contains($mensaje)) {
+            $this->mensajes->removeElement($mensaje);
+            $mensaje->removeDestinatario($this);
+        }
+
+        return $this;
+    }
+
+    
 
 }

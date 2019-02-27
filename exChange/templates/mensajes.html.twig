@@ -1,0 +1,24 @@
+{% extends 'general.html.twig' %}
+
+{% block title %}ExChange{% endblock %}
+
+{% block body %}
+<main>
+    <form method="post" action="/mandarMensaje">
+    <div class="input-field col s12">
+        <h5 class="blue-text">Introduzca el correo del receptor</h5>
+        <div class="row">
+            <label for="receptor">Email</label>
+            <input type="email" name="receptor" id="receptor" required>
+        </div>
+        
+        <div class="input-field col s12">
+            <textarea id="contact-info" name="contact-info" class="materialize-textarea" required></textarea>
+            <label for="contact-info">Información</label>
+        </div>
+
+    </div>
+    <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
+    </form>
+</main>
+{% endblock %}
