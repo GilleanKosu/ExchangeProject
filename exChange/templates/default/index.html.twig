@@ -36,8 +36,33 @@
         </div>
       </div>
       <div class="modal-footer">
+        <a href="#messageModal" class="modal-close waves-effect btn green white-text modal-trigger">Enviar Mensaje</a>
         <a href="#" class="modal-close waves-effect btn-flat waves-red">Cancelar</a>
         <button class="modal-close waves-effect blue btn white-text" type="submit">Solicitar</button>
+        {# <button class="btn btn-lg btn-primary modal-close" type="submit">Crear servicio</button> #}
+      </div>
+    </form>
+  </div>
+  <div id="messageModal" class="modal">
+    <form method="post" action="/newmessage">
+      <div class="modal-content">
+        <h2 class="section-title blue-text center">Enviar Mensaje</h2>
+        <div class="row">
+          <section class="col s12">
+            <div class="input-field">
+              <input id="addressee" type="text" name="addressee" disabled>
+              <label for="addressee">Destinatario</label>
+            </div>
+            <div class="input-field">
+              <textarea id="content-msg" type="text" name="content-msg" class="materialize-textarea"></textarea>
+              <label for="content-msg">Texto</label>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect btn-flat waves-red">Cancelar</a>
+        <button class="modal-close waves-effect blue btn white-text" type="submit">Enviar</button>
         {# <button class="btn btn-lg btn-primary modal-close" type="submit">Crear servicio</button> #}
       </div>
     </form>
@@ -51,7 +76,9 @@
     <div class="services-list">
       {% for servicio in ofertas_recientes %}
       <article class="card cyan lighten-4 blue-text text-darken-4">
-        <p>f {# <h4>{{ servicio.getUsuario }}H</h4> #} </p>
+      
+        {# <p>f {{ dump(servicio.usuario) }} </p> #}
+
         <h3>{{ servicio.getDescripcionServicio }}</h3>
         <p class="time">{{ servicio.getDuracionServicio }}H</p>
         <p class="points"> {{ servicio.getValoracion }}<i class="material-icons">star_border</i></p>
@@ -85,6 +112,7 @@
           {% endif %}
         </article>
         {% endfor %}
+
     </div>
   </section>
   
@@ -93,7 +121,6 @@
   {# <div class> #}
 
   {# <form method="post" action="/buscarservicios">
-
         <h3>Nombre de la categoria</h3>
        <select name="categorias" class="category-text">
             {% if categorias %}
@@ -112,7 +139,6 @@
         </select>
         <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
       </form>
-
   {# <article class="card blue accent-1">
       {% if serviciosPorCiudad is defined %}
           <ul>

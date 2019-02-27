@@ -6,6 +6,7 @@ use App\Entity\Ciudad;
 use App\Entity\Categoria;
 use App\Entity\Servicio;
 use App\Entity\Contacto;
+use App\Entity\Mensajes;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,12 +33,17 @@ class DefaultController extends AbstractController
         $ofertas_recientes = $repository3 ->findServicesAndOrderById();
         $mejor_valoradas = $repository3 ->findServicesAndOrderByValoracion();
 
+        $repository4 = $this -> getDoctrine() -> getRepository(Mensajes::class);
+        $mensajes_usuario = $user->getMensajes();
+        
+
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
             'categorias' => $categorias,
             'ciudades' => $ciudades,
             'ofertas_recientes' => $ofertas_recientes,
             'mejor_valoradas' => $mejor_valoradas,
+            'mensajes' => $mensajes_usuario,
             'user' => $user
         ]);
     }
@@ -45,14 +51,7 @@ class DefaultController extends AbstractController
      * @Route("/successLogin", name="successLogin")
      */
     public function successLogin(){
-
-        $token = $this->get('security.token_storage')->getToken();
-        $user = $token->getUser();
-
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
         return $this->redirectToRoute('index');
-        
     }
     /**
      * @Route("/successLogin/misDatosPersonales", name="misDatosPersonales")
@@ -218,7 +217,7 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/buscarservicios", name="buscarservicios")
+     * @Route("/search", name="buscarservicios")
      */
     public function buscarservicios() {
         
@@ -227,7 +226,7 @@ class DefaultController extends AbstractController
 
         //Repositorios y metodos de las cosas con las que necesitamos trabajar o pasar a la vista
         $repository = $this -> getDoctrine() -> getRepository(Ciudad::class);
-        $ciudad = $repository -> findOneByName($_POST['ciudades']);
+        $ciudad = $repository -> findOneByName($_GET['city']);
 
         $repository2 = $this -> getDoctrine() -> getRepository(Categoria::class);
         $categorias = $repository2 ->findAll();
@@ -241,7 +240,7 @@ class DefaultController extends AbstractController
         foreach ($serviciosPorCiudad as $key => $value) {
 
             //Guardamos esos servicios para luego pasarlos por parametro
-            if ( ($value->getIdCategoria()) == ($_POST['categorias'])) {
+            if ( ($value->getIdCategoria()) == ($_GET['cat'])) {
                 $listaServicios[] = $serviciosPorCiudad[$key];
             }
         }
@@ -249,7 +248,7 @@ class DefaultController extends AbstractController
         //Si ha encontrado los servicios que se correspondan los pasará a la vista
         if(isset($listaServicios)) {
 
-            return $this->render('default/index.html.twig', [
+            return $this->render('search.html.twig', [
                 'controller_name' => 'DefaultController',
                 'categorias' => $categorias,
                 'ciudades' => $ciudades,
@@ -314,13 +313,54 @@ class DefaultController extends AbstractController
 
 
     /**
-     * @Route("/msg_user", name="mensajes_Usuario")
+     * @Route("/profile/msg", name="mensajes_Usuario")
      */
     public function mensajeUsuario() {
 
-        // return $this->render('mensajes.html.twig');
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
+
+        $repository = $this -> getDoctrine() -> getRepository(Categoria::class);
+        $categorias = $repository ->findAll();
+
+        $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
+        $ciudades = $repository2 ->findAll();
+
+        $repository3 = $this -> getDoctrine() -> getRepository(Servicio::class);
+        $ofertas_recientes = $repository3 ->findServicesAndOrderById();
+        $mejor_valoradas = $repository3 ->findServicesAndOrderByValoracion();
+
+        return $this->render('mensajes.html.twig', [
+            'categorias' => $categorias,
+            'ciudades' => $ciudades,
+            'user' => $user
+        ]);
         
     }
+
+    /**
+     * @Route("/mandarMensaje", name="mandarMensaje")
+     */
+    public function mandarMensaje() {
+
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
+        
+        $repository = $this -> getDoctrine() -> getRepository(User::class);
+        $destinatario = $repository -> findOneByEmail($_POST['receptor']);
+
+        $nuevoMensaje = new Mensajes ();
+        $nuevoMensaje -> setRemitente($user);
+        $nuevoMensaje -> addDestinatario($destinatario);
+        $nuevoMensaje -> setContenido($_POST['contact-info']);
+        $destinatario -> addMensaje ($nuevoMensaje);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->merge($destinatario);
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('mensajes_Usuario');
+    }
+
 
 
 

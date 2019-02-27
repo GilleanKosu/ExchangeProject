@@ -27,4 +27,18 @@ $(function () {
         $(this).clone().appendTo(".section-article-request").find('a').remove();
     });
     /* Fin solicitud de servicio */
+
+    /* Redireccionamiento */
+    if ($('.count').length) {
+        let time = 5;
+        let counter = setInterval(() => {
+            time -= 1;
+            $('.count').html(time);
+            if (time <= 0) {
+                clearInterval(counter);
+                $('.count-full-msg').html("Redireccionando...");
+                window.location.replace("/");
+            }
+        }, 1000);
+    }
 })
