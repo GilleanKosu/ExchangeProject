@@ -7,6 +7,7 @@ $(function () {
     $('.modal').modal();
     $('select').formSelect();
     $('.sidenav').sidenav();
+    $('.collapsible').collapsible();
 
     /* Solicitud de servicio */
     $('.datepicker').datepicker({

@@ -7,16 +7,14 @@
     <div id="messageModal" class="modal">
         <form method="post" action="/mandarMensaje">
             <div class="modal-content">
+                <h2 class="section-title blue-text center">Nuevo correo</h2>
                 <div class="input-field col s12">
-                    <h5 class="blue-text">Introduzca el correo del receptor</h5>
-                    <div class="row">
-                        <label for="receptor">Email</label>
-                        <input type="email" name="receptor" id="receptor" required>
-                    </div>
-                    <div class="input-field col s12">
-                        <textarea id="contact-info" name="contact-info" class="materialize-textarea" required></textarea>
-                        <label for="contact-info">Información</label>
-                    </div>
+                    <input type="email" name="receptor" id="receptor" required>
+                    <label for="receptor">Email</label>
+                </div>
+                <div class="input-field col s12">
+                    <textarea id="contact-info" name="contact-info" class="materialize-textarea" required></textarea>
+                    <label for="contact-info">Información</label>
                 </div>
             </div>
             <div class="modal-footer">
@@ -26,26 +24,23 @@
         </form>
     </div>
     <a href="#messageModal" class="btn-floating btn-large waves-effect waves-light blue darken-4 create-message modal-trigger"><i class="material-icons">add</i></a>
-    
-
+    <h2 class="page-title blue-text center smaller">Bandeja de entrada</h2>
+    <ul class="collapsible popout messages-list">
      {% for msg in mensajes %}
 
         {% if msg.getLeido==0 %}
             
-            <article class="card cyan lighten-4 blue-text text-darken-4">
-                <p class="time">{{ msg.getRemitente() }}</p>
-                <p class="time">{{ msg.getContenido() }}</p>
-
-            </article>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">fiber_new</i>{{ msg.getRemitente() }}</div>
+                <div class="collapsible-body"><span>{{ msg.getContenido() }}</span></div>
+            </li>
 
         {% elseif msg.getLeido==1 %}
 
-            <article class="card cyan lighten-4 blue-text text-darken-4">
-                <p class="time">{{ msg.getId() }}</p>
-                <p class="time">{{ msg.getRemitente() }}</p>
-                <p class="time">{{ msg.getContenido() }}</p>
-
-            </article>
+            <li>
+                <div class="collapsible-header"><i class="material-icons"></i>{{ msg.getRemitente() }}</div>
+                <div class="collapsible-body"><span>{{ msg.getContenido() }}</span></div>
+            </li>
 
           
         {% endif %}
