@@ -28,7 +28,9 @@ class DefaultController extends AbstractController
         $ciudades = $repository2 ->findAll();
 
         $repository3 = $this -> getDoctrine() -> getRepository(Servicio::class);
-        $ofertas_recientes = $repository3 ->findServicesAndOrderBy();
+        $ofertas_recientes = $repository3 ->findServicesAndOrderById();
+        $mejor_valoradas = $repository3 ->findServicesAndOrderByValoracion();
+        
         // $mejor_valorados = $repository3 ->;
 
 
@@ -44,6 +46,7 @@ class DefaultController extends AbstractController
             'categorias' => $categorias,
             'ciudades' => $ciudades,
             'ofertas_recientes' => $ofertas_recientes,
+            'mejor_valoradas' => $mejor_valoradas,
             'user' => $user
         ]);
     }

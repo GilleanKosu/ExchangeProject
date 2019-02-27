@@ -49,11 +49,18 @@ class ServicioRepository extends ServiceEntityRepository
     */
 
     //Saca los 5 mas recientes
-    public function findServicesAndOrderBy()
-    {
+    public function findServicesAndOrderById(){
         return $this->createQueryBuilder('s')
             ->orderBy('s.id', 'DESC')
             ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    public function findServicesAndOrderByValoracion(){
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.valoracion', 'DESC')
+            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
