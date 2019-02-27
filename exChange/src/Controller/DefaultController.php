@@ -50,15 +50,23 @@ class DefaultController extends AbstractController
         $user = $token->getUser();
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $repository = $this -> getDoctrine() -> getRepository(Categoria::class);
         $categorias = $repository ->findAll();
+
         $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
         $ciudades = $repository2 ->findAll();
+
+        $repository3 = $this -> getDoctrine() -> getRepository(Servicio::class);
+        $ofertas_recientes = $repository3 ->findServicesAndOrderById();
+        $mejor_valoradas = $repository3 ->findServicesAndOrderByValoracion();
 
         return $this->render('user.html.twig', [
             'categorias' => $categorias, 
             'user' => $user,
-            'ciudades' => $ciudades
+            'ciudades' => $ciudades,
+            'ofertas_recientes' => $ofertas_recientes,
+            'mejor_valoradas' => $mejor_valoradas,
         ]);
     }
     /**
@@ -212,7 +220,7 @@ class DefaultController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        //Buscamos la ciudad del usuarioy añadimos ese servicio(el metodo coge solo la id de la ciudad y la mete en las tablas correspondientes)
+        //Buscamos la ciudad del usuario y añadimos ese servicio(el metodo coge solo la id de la ciudad y la mete en las tablas correspondientes)
         $user->getCiudad()->addServicio($crearOferta);
         
         $user->addServicio($crearOferta);
