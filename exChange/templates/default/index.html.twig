@@ -11,7 +11,7 @@
       <div class="modal-content">
         <h2 class="section-title blue-text center">Solicitar servicio</h2>
         <div class="row">
-          <section class="col hide-on-med-and-down m6 l6 xl5">
+          <section class="col hide-on-med-and-down m6 l6 xl5 section-article-request">
             <article class="card cyan lighten-4 blue-text text-darken-4 service">
               <p>Manuel Luján Jiménez</p>
               <h3>Saco a pasear a mascotas</h3>
@@ -21,8 +21,16 @@
           </section>
           <section class="col s12 l6 xl7">
             <div class="input-field">
-              <input id="prueba" type="text" name="prueba">
-              <label for="prueba">Prueba</label>
+              <input id="fecha" type="date" name="fecha">
+              <label for="fecha">Fecha</label>
+            </div>
+            <div class="input-field">
+              <input id="hora" type="time" name="hora">
+              <label for="hora">Hora</label>
+            </div>
+            <div class="input-field">
+              <textarea id="descripcion" name="descripcion" class="materialize-textarea"></textarea>
+              <label for="descripcion">Descripción</label>
             </div>
           </section>
         </div>
@@ -47,8 +55,9 @@
         <h3>{{ servicio.getDescripcionServicio }}</h3>
         <h4>{{ servicio.getDuracionServicio }}H</h4>
         <p class="category-text">{{ servicio.getIdCategoria }}</p>
+        <input type="hidden" value="{{ servicio.getId }}" name="service-id" class="service-id">
         {% if user != 'anon.' %}
-          <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger">Solicitar</a>
+          <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger request-btn">Solicitar</a>
         {% else %}
           <a href="/login" class="cyan darken-3 white-text waves-effect waves-light">Solicitar</a>
         {% endif %}
@@ -66,8 +75,9 @@
           <h3>{{ mejor_valorado.getDescripcionServicio }}</h3>
           <h4>{{ mejor_valorado.getDuracionServicio }}H</h4>
           <p class="category-text">{{ mejor_valorado.getIdCategoria }}</p>
+          <input type="hidden" value="{{ mejor_valorado.getId }}" name="service-id" class="service-id">
           {% if user != 'anon.' %}
-           <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger">Solicitar</a>
+           <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger request-btn">Solicitar</a>
           {% else %}
             <a href="/login" class="cyan darken-3 white-text waves-effect waves-light">Solicitar</a>
           {% endif %}
