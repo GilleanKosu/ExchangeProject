@@ -10,14 +10,8 @@ easy_admin:
        - App\Entity\User
        - App\Entity\Ciudad
        - App\Entity\Categoria
-       - App\Entity\Servicio;
-       - App\Entity\Contacto;
-       - App\Entity\Mensajes;
     design:
         menu:
             - { entity: 'User', label: 'Usuarios', icon: 'user' }
             - { entity: 'Ciudad', label: 'Ciudades', icon: 'tag' }
             - { entity: 'Categoria', label: 'Categorias', icon: 'tag' }
-            - { entity: 'Servicio', label: 'Categorias', icon: 'tag' }
-            - { entity: 'Contacto', label: 'Categorias', icon: 'tag' }
-            - { entity: 'Mensajes', label: 'Categorias', icon: 'tag' }
