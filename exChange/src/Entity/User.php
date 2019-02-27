@@ -68,7 +68,7 @@ class User implements UserInterface
     private $servicios;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Mensajes", mappedBy="destinatario")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Mensajes", mappedBy="destinatario", cascade={"persist"})
      */
     private $mensajes;
 

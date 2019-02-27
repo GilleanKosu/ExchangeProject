@@ -6,6 +6,7 @@ use App\Entity\Ciudad;
 use App\Entity\Categoria;
 use App\Entity\Servicio;
 use App\Entity\Contacto;
+use App\Entity\Mensajes;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -307,16 +308,54 @@ class DefaultController extends AbstractController
 
 
     /**
-     * @Route("/profle/msg", name="mensajes_Usuario")
+     * @Route("/profile/msg", name="mensajes_Usuario")
      */
     public function mensajeUsuario() {
 
         $token = $this->get('security.token_storage')->getToken();
         $user = $token->getUser();
-        
-        return $this->render('mensajes.html.twig');
+
+        $repository = $this -> getDoctrine() -> getRepository(Categoria::class);
+        $categorias = $repository ->findAll();
+
+        $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
+        $ciudades = $repository2 ->findAll();
+
+        $repository3 = $this -> getDoctrine() -> getRepository(Servicio::class);
+        $ofertas_recientes = $repository3 ->findServicesAndOrderById();
+        $mejor_valoradas = $repository3 ->findServicesAndOrderByValoracion();
+
+        return $this->render('mensajes.html.twig', [
+            'categorias' => $categorias,
+            'ciudades' => $ciudades,
+            'user' => $user
+        ]);
         
     }
+
+    /**
+     * @Route("/mandarMensaje", name="mandarMensaje")
+     */
+    public function mandarMensaje() {
+
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
+        
+        $repository = $this -> getDoctrine() -> getRepository(User::class);
+        $destinatario = $repository -> findOneByEmail($_POST['receptor']);
+
+        $nuevoMensaje = new Mensajes ();
+        $nuevoMensaje -> setRemitente($user);
+        $nuevoMensaje -> addDestinatario($destinatario);
+        $nuevoMensaje -> setContenido($_POST['contact-info']);
+        $destinatario -> addMensaje ($nuevoMensaje);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->merge($destinatario);
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('mensajes_Usuario');
+    }
+
 
 
 

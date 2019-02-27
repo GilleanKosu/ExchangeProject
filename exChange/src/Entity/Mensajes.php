@@ -24,7 +24,7 @@ class Mensajes
     private $remitente;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="mensajes")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="mensajes", cascade={"persist"})
      */
     private $destinatario;
 
