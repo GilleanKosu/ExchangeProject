@@ -36,8 +36,45 @@
         </div>
       </div>
       <div class="modal-footer">
+        <a href="#messageModal" class="modal-close waves-effect btn green white-text modal-trigger">Enviar Mensaje</a>
         <a href="#" class="modal-close waves-effect btn-flat waves-red">Cancelar</a>
         <button class="modal-close waves-effect blue btn white-text" type="submit">Solicitar</button>
+        {# <button class="btn btn-lg btn-primary modal-close" type="submit">Crear servicio</button> #}
+      </div>
+    </form>
+  </div>
+  <div id="messageModal" class="modal">
+    <form method="post" action="/request">
+      <div class="modal-content">
+        {# <h2 class="section-title blue-text center">Solicitar servicio</h2>
+        <div class="row">
+          <section class="col hide-on-med-and-down m6 l6 xl5 section-article-request">
+            <article class="card cyan lighten-4 blue-text text-darken-4 service">
+              <p>Manuel Luján Jiménez</p>
+              <h3>Saco a pasear a mascotas</h3>
+              <h4>1h</h4>
+              <p class="category-text">Mascotas</p>
+            </article>
+          </section>
+          <section class="col s12 l6 xl7">
+            <div class="input-field">
+              <input id="fecha" type="text" name="fecha" class="datepicker">
+              <label for="fecha">Fecha</label>
+            </div>
+            <div class="input-field">
+              <input id="hora" type="text" name="hora" class="timepicker">
+              <label for="hora">Hora</label>
+            </div>
+            <div class="input-field">
+              <textarea id="descripcion" name="descripcion" class="materialize-textarea"></textarea>
+              <label for="descripcion">Descripción</label>
+            </div>
+          </section> #}{# 
+        </div> #}
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect btn-flat waves-red">Cancelar</a>
+        <button class="modal-close waves-effect blue btn white-text" type="submit">Enviar</button>
         {# <button class="btn btn-lg btn-primary modal-close" type="submit">Crear servicio</button> #}
       </div>
     </form>
@@ -87,7 +124,7 @@
           {% endif %}
         </article>
         {% endfor %}
-        
+
     </div>
   </section>
   
