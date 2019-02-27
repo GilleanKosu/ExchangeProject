@@ -51,23 +51,8 @@ class DefaultController extends AbstractController
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $repository = $this -> getDoctrine() -> getRepository(Categoria::class);
-        $categorias = $repository ->findAll();
-
-        $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
-        $ciudades = $repository2 ->findAll();
-
-        $repository3 = $this -> getDoctrine() -> getRepository(Servicio::class);
-        $ofertas_recientes = $repository3 ->findServicesAndOrderById();
-        $mejor_valoradas = $repository3 ->findServicesAndOrderByValoracion();
-
-        return $this->render('user.html.twig', [
-            'categorias' => $categorias, 
-            'user' => $user,
-            'ciudades' => $ciudades,
-            'ofertas_recientes' => $ofertas_recientes,
-            'mejor_valoradas' => $mejor_valoradas,
-        ]);
+        return $this->redirectToRoute('index');
+        
     }
     /**
      * @Route("/successLogin/misDatosPersonales", name="misDatosPersonales")
