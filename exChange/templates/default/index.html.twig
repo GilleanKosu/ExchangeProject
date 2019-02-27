@@ -5,6 +5,36 @@
 {% block body %}
 
 <main>
+  {% if user != 'anon.' %}
+  <div id="requestModal" class="modal">
+    <form method="post" action="/request">
+      <div class="modal-content">
+        <h2 class="section-title blue-text center">Solicitar servicio</h2>
+        <div class="row">
+          <section class="col hide-on-med-and-down m6 l6 xl5">
+            <article class="card cyan lighten-4 blue-text text-darken-4 service">
+              <p>Manuel Luján Jiménez</p>
+              <h3>Saco a pasear a mascotas</h3>
+              <h4>1h</h4>
+              <p class="category-text">Mascotas</p>
+            </article>
+          </section>
+          <section class="col s12 l6 xl7">
+            <div class="input-field">
+              <input id="prueba" type="text" name="prueba">
+              <label for="prueba">Prueba</label>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect btn-flat waves-red">Cancelar</a>
+        <button class="modal-close waves-effect blue btn white-text" type="submit">Solicitar</button>
+        {# <button class="btn btn-lg btn-primary modal-close" type="submit">Crear servicio</button> #}
+      </div>
+    </form>
+  </div>
+  {% endif %}
   <section class="section-title blue-text">
     <h2>Bienvenidos</h2>
   </section>
@@ -45,19 +75,7 @@
         {% endfor %}
     </div>
   </section>
-  {% if user != 'anon.' %}
-  <div id="requestModal" class="modal">
-    <form method="post" action="/request">
-      <div class="modal-content">
-      </div>
-      <div class="modal-footer">
-        <a href="#" class="modal-close waves-effect btn-flat waves-red">Cancelar</a>
-        <button class="modal-close waves-effect blue btn white-text" type="submit">Solicitar</button>
-        {# <button class="btn btn-lg btn-primary modal-close" type="submit">Crear servicio</button> #}
-      </div>
-    </form>
-  </div>
-  {% endif %}
+  
   {# <section class="most-demanded-services">
     <h2 class="section-title blue-text">Buscador de ofertas</h2> #}
   {# <div class> #}
