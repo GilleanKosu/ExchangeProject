@@ -31,8 +31,16 @@
         {% if msg.getLeido==0 %}
             
             <li>
-                <div class="collapsible-header"><i class="material-icons">fiber_new</i>{{ msg.getRemitente() }}</div>
-                <div class="collapsible-body"><span>{{ msg.getContenido() }}</span></div>
+                <div class="collapsible-header">
+                    <i class="material-icons">fiber_new</i>
+                    {{ msg.getRemitente() }}{# <p class="right">{{ msg.getDate() }}</p> #}
+                </div>
+                <div class="collapsible-body">
+                    <button type="submit" value="{{ msg.getId }}" class="waves-effect waves-light btn-small blue">
+                        <i class="material-icons">drafts</i>
+                    </button>
+                    <span>{{ msg.getContenido() }}</span>
+                </div>
             </li>
 
         {% elseif msg.getLeido==1 %}
