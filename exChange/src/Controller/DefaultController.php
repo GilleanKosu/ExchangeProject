@@ -307,11 +307,14 @@ class DefaultController extends AbstractController
 
 
     /**
-     * @Route("/msg_user", name="mensajes_Usuario")
+     * @Route("/profle/msg", name="mensajes_Usuario")
      */
     public function mensajeUsuario() {
 
-        // return $this->render('mensajes.html.twig');
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
+        
+        return $this->render('mensajes.html.twig');
         
     }
 

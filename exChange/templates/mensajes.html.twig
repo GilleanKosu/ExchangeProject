@@ -1,0 +1,49 @@
+{% extends 'general.html.twig' %}
+
+{% block title %}ExChange{% endblock %}
+
+{% block body %}
+<main>
+    <form method="get" action="/profle/msg">
+    <div class="input-field col s12">
+        <h5 class="blue-text">Filtrar Categoría</h5>
+        <select class="blue" name="cat">
+            <option value="none" selected>Escoge una categoría</option>
+            {% if categorias %}
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.getNombreCategoria }}">{{ categoria.getNombreCategoria }}
+                    </option>
+                {% endfor %}
+            {% endif %}
+        </select>
+    </div>
+    <div class="input-field col s12">
+        <h5 class="blue-text">Filtrar Ciudad</h5>
+        <select class="blue" name="city">
+            <option value="none" selected>Escoge una ciudad</option>
+            {% if ciudades %}
+                {% for ciudad in ciudades %}
+                    <option value="{{ ciudad.getNombreC }}">{{ ciudad.getNombreC }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+    </div>
+    <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
+    </form>
+
+    <article class="card blue accent-1">
+      {% if serviciosPorCiudad is defined %}
+          <ul>
+            {% for servicios in serviciosPorCiudad %}
+                <li>{{ servicios.getDescripcionServicio }}</li>
+                <li>{{ servicios.getDescripcionServicio }}</li>
+            {% endfor %}
+          <ul>
+      {% endif %}
+      
+      {% if errorServicio is defined %}
+          <h3>{{ errorServicio }}<h3>
+      {% endif %}
+      </article>
+</main>
+{% endblock %}
