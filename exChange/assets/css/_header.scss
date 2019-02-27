@@ -1,0 +1,51 @@
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    &>*>* {
+        background-image: url("../images/background.jpg");
+        background-size: 100% auto;
+        background-position: center;
+        & ul>li {
+            position: relative;
+            &::before {
+                content: "";
+                width: 100%;
+                height: 0;
+                position: absolute;
+                bottom: 0;
+                background-color: #0d47a1;
+                transition: height .2s linear;
+            }
+        }
+        & ul>li:hover::before {
+            height: 4px;
+        }
+        & ul>li>a:hover {
+            background-color: transparent;
+        }
+    }
+}
+
+.user-img {
+    width: 35px;
+    position: absolute;
+    top: 9px;
+}
+
+#mobile-demo {
+    z-index: 1001;
+}
+
+#searchModal {
+    height: 80% !important;
+    & .search-button {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        &:first-child {
+            right: 135px;
+        }
+    }
+}

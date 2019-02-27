@@ -1,0 +1,110 @@
+main {
+    margin-top: 80px;
+    & section,
+    & div {
+        width: 100%;
+        & h2 {
+            font-size: 50px;
+            padding-left: 30px;
+            font-weight: lighter;
+            text-transform: uppercase;
+            @media (max-width: 800px) {
+                font-size: 30px;
+            }
+        }
+        & .services-list,
+        &>.row {
+            width: 100%;
+            display: flex;
+            flex-flow: wrap;
+            align-items: center;
+            justify-content: space-evenly;
+            & article {
+                width: 280px;
+                height: 280px;
+                padding: 15px;
+                position: relative;
+                overflow: hidden;
+                &:hover a {
+                    bottom: -25px;
+                }
+                &::before {
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 30%;
+                    top: -30px;
+                    left: 0px;
+                    background-color: #80deea;
+                    transform: skewY(-10deg);
+                }
+                & p:first-child {
+                    position: relative;
+                }
+                & .ranking {
+                    position: absolute;
+                    top: 7px;
+                    right: 7px;
+                    font-weight: 600;
+                    font-size: 2.2rem;
+                }
+                & h3 {
+                    font-size: 33px;
+                    font-weight: lighter;
+                    margin-top: 3.1rem;
+                }
+                & .time {
+                    position: absolute;
+                    top: 50px;
+                    right: 7px;
+                    font-size: 20px;
+                }
+                & .points {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 10px;
+                    display: inline-flex;
+                    vertical-align: middle;
+                    font-size: 18px;
+                }
+                & .category-text {
+                    position: absolute;
+                    bottom: 10px;
+                    right: 10px;
+                }
+                & a {
+                    position: absolute;
+                    width: 100%;
+                    height: 40%;
+                    left: 0;
+                    bottom: -50%;
+                    transform: skewY(-10deg);
+                    transition: bottom .15s linear;
+                    text-align: center;
+                    font-size: 36px;
+                    padding-top: 10px;
+                }
+            }
+        }
+        & .search-list {
+            justify-content: unset;
+            margin: 0 auto;
+            width: 80%;
+            & article {
+                margin-left: 2%;
+            }
+            @media (max-width: 1140px) {
+                justify-content: space-evenly;
+                width: 100%;
+                & article {
+                    margin-left: 0px;
+                }
+            }
+        }
+    }
+    & #requestModal .modal-form {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+}
