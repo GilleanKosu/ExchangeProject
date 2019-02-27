@@ -131,30 +131,30 @@
     <div id="servicesModal" class="modal">
         <form method="post" action="/enviaroferta">
             <div class="modal-content">
-                <h5 class="blue-text">Nuevo servicio<h5>
-                        <div class="input-field col s12">
-                            {# <h5 class="blue-text">Categoría</h5> #}
-                            <select name="servicio" class="category-text">
-                                {% if categorias %}
-                                    {% for categoria in categorias %}
-                                        <option value="{{ categoria.getNombreCategoria }}">{{ categoria.getNombreCategoria }}
-                                        </option>
-                                    {% endfor %}
-                                {% endif %}
+                <h2 class="section-title blue-text center">Nuevo servicio</h2>
+                    <div class="input-field col s12">
+                        {# <h5 class="blue-text">Categoría</h5> #}
+                        <select name="servicio" class="category-text">
+                            {% if categorias %}
+                                {% for categoria in categorias %}
+                                    <option value="{{ categoria.getNombreCategoria }}">{{ categoria.getNombreCategoria }}
+                                    </option>
+                                {% endfor %}
+                            {% endif %}
 
-                            </select>
-                            <label for="servicio" class="sr-only">Categoría</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <input type="text" name="descripcion" id="inputDescripcion" class="form-control">
-                            <label for="inputDescripcion" class="sr-only">Descripción</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <input type="number" name="duracionservicio" id="inputTime" class="form-control" min="1"
-                                max="6">
-                            <label for="duracionservicio" class="sr-only">Duración del servicio</label>
-                        </div>
-                        <input type="hidden" name="username" id="usernameModal" class="form-control" value="{{user}}">
+                        </select>
+                        <label for="servicio" class="sr-only">Categoría</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="text" name="descripcion" id="inputDescripcion" class="form-control">
+                        <label for="inputDescripcion" class="sr-only">Descripción</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="number" name="duracionservicio" id="inputTime" class="form-control" min="1"
+                            max="6">
+                        <label for="duracionservicio" class="sr-only">Duración del servicio</label>
+                    </div>
+                    <input type="hidden" name="username" id="usernameModal" class="form-control" value="{{user}}">
             </div>
             <div class="modal-footer">
                 <a href="#" class="modal-close waves-effect btn-flat waves-red">Cancelar</a>

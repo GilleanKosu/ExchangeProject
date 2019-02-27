@@ -25,8 +25,9 @@
     </div>
     <a href="#messageModal" class="btn-floating btn-large waves-effect waves-light blue darken-4 create-message modal-trigger"><i class="material-icons">add</i></a>
     <h2 class="page-title blue-text center smaller">Bandeja de entrada</h2>
-    <ul class="collapsible popout messages-list">
     <form action="/leido" method="POST">
+    <ul class="collapsible popout messages-list">
+    
      {% for msg in mensajes %}
 
         {% if msg.getLeido==0 %}
@@ -54,6 +55,7 @@
           
         {% endif %}
       {% endfor %}
+        </ul>
       </form>
 </main>
 {% endblock %}
