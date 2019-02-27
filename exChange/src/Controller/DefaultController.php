@@ -33,12 +33,17 @@ class DefaultController extends AbstractController
         $ofertas_recientes = $repository3 ->findServicesAndOrderById();
         $mejor_valoradas = $repository3 ->findServicesAndOrderByValoracion();
 
+        $repository4 = $this -> getDoctrine() -> getRepository(Mensajes::class);
+        $mensajes_usuario = $user->getMensajes();
+        
+
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
             'categorias' => $categorias,
             'ciudades' => $ciudades,
             'ofertas_recientes' => $ofertas_recientes,
             'mejor_valoradas' => $mejor_valoradas,
+            'mensajes' => $mensajes_usuario,
             'user' => $user
         ]);
     }
