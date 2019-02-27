@@ -30,20 +30,66 @@
     </div>
     <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
     </form>
-
-    <article class="card blue accent-1">
-      {% if serviciosPorCiudad is defined %}
-          <ul>
-            {% for servicios in serviciosPorCiudad %}
-                <li>{{ servicios.getDescripcionServicio }}</li>
-                <li>{{ servicios.getDescripcionServicio }}</li>
+    {% if user != 'anon.' %}
+  <div id="requestModal" class="modal">
+    <form method="post" action="/request">
+      <div class="modal-content">
+        <h2 class="section-title blue-text center">Solicitar servicio</h2>
+        <div class="row">
+          <section class="col hide-on-med-and-down m6 l6 xl5 section-article-request">
+            <article class="card cyan lighten-4 blue-text text-darken-4 service">
+              <p>ExChange</p>
+              <h3></h3>
+              <h4></h4>
+              <p class="category-text">Mascotas</p>
+            </article>
+          </section>
+          <section class="col s12 l6 xl7">
+            <div class="input-field">
+              <input id="fecha" type="text" name="fecha" class="datepicker">
+              <label for="fecha">Fecha</label>
+            </div>
+            <div class="input-field">
+              <input id="hora" type="text" name="hora" class="timepicker">
+              <label for="hora">Hora</label>
+            </div>
+            <div class="input-field">
+              <textarea id="descripcion" name="descripcion" class="materialize-textarea"></textarea>
+              <label for="descripcion">Descripción</label>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect btn-flat waves-red">Cancelar</a>
+        <button class="modal-close waves-effect blue btn white-text" type="submit">Solicitar</button>
+        {# <button class="btn btn-lg btn-primary modal-close" type="submit">Crear servicio</button> #}
+      </div>
+    </form>
+  </div>
+  {% endif %}
+    <section class="latest-services">
+        <h2 class="section-title blue-text">Resultados:</h2>
+        <div class="services-list search-list">
+            {% for servicio in serviciosPorCiudad %}
+            <article class="card cyan lighten-4 blue-text text-darken-4">
+                <p>f {# <h4>{{ servicio.getUsuario }}H</h4> #} </p>
+                <h3>{{ servicio.getDescripcionServicio }}</h3>
+                <p class="time">{{ servicio.getDuracionServicio }}H</p>
+                <p class="points"> {{ servicio.getValoracion }}<i class="material-icons">star_border</i></p>
+                <p class="category-text">{{ servicio.getIdCategoria }}</p>
+                <input type="hidden" value="{{ servicio.getId }}" name="service-id" class="service-id">
+                {% if user != 'anon.' %}
+                <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger request-btn">Solicitar</a>
+                {% else %}
+                <a href="/login" class="cyan darken-3 white-text waves-effect waves-light">Solicitar</a>
+                {% endif %}
+            </article>
             {% endfor %}
-          <ul>
-      {% endif %}
-      
+        </div>
+    </section>
       {% if errorServicio is defined %}
           <h3>{{ errorServicio }}<h3>
       {% endif %}
-      </article>
 </main>
 {% endblock %}
