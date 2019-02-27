@@ -4,6 +4,28 @@
 
 {% block body %}
 <main>
-
+    <div class="input-field col s12">
+        <h5 class="blue-text">Filtrar Categoría</h5>
+        <select class="blue" name="cat">
+            <option value="none" selected>Escoge una categoría</option>
+            {% if categorias %}
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.getNombreCategoria }}">{{ categoria.getNombreCategoria }}
+                    </option>
+                {% endfor %}
+            {% endif %}
+        </select>
+    </div>
+    <div class="input-field col s12">
+        <h5 class="blue-text">Filtrar Ciudad</h5>
+        <select class="blue" name="city">
+            <option value="none" selected>Escoge una ciudad</option>
+            {% if ciudades %}
+                {% for ciudad in ciudades %}
+                    <option value="{{ ciudad.getNombreC }}">{{ ciudad.getNombreC }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+    </div>
 </main>
 {% endblock %}
