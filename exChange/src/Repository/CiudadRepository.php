@@ -42,6 +42,15 @@ class CiudadRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+    public function findOneIdByName($value): ?Ciudad
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.nombreC = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
     
 
     /*

@@ -39,7 +39,8 @@ class Servicio
     private $horas_dia;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="servicios")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="servicios", inversedBy="user", inversedBy="users", orphanRemoval=true)
+     * @ORM\JoinTable(name="servicio_user")
      */
     private $usuario;
 
@@ -52,6 +53,16 @@ class Servicio
      * @ORM\ManyToOne(targetEntity="App\Entity\Ciudad", inversedBy="servicios", cascade={"persist"})
      */
     private $ciudad_servicio;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="decimal", precision=3, scale=0, nullable=true)
+     */
+    private $valoracion;
 
     public function __construct()
     {
@@ -163,6 +174,30 @@ class Servicio
     public function __toString()
     {
         return $this->descripcion_servicio;
+    }
+
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
+
+    public function setDate(?string $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getValoracion()
+    {
+        return $this->valoracion;
+    }
+
+    public function setValoracion($valoracion): self
+    {
+        $this->valoracion = $valoracion;
+
+        return $this;
     }
 
 }

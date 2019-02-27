@@ -11,12 +11,12 @@
   <section class="latest-services">
     <h2 class="section-title blue-text">Ultimos servicios</h2>
     <div class="services-list">
-      {% for i in 1..10 %}
+      {% for servicio in ofertas_recientes %}
       <article class="card cyan lighten-4 blue-text text-darken-4">
-        <p>Manuel Luján Jiménez</p>
-        <h3>Saco a pasear a mascotas</h3>
-        <h4>1h</h4>
-        <p class="category-text">Mascotas</p>
+        <p>f {# <h4>{{ servicio.getUsuario }}H</h4> #} </p>
+        <h3>{{ servicio.getDescripcionServicio }}</h3>
+        <h4>{{ servicio.getDuracionServicio }}H</h4>
+        <p class="category-text">{{ servicio.getIdCategoria }}</p>
         {% if user != 'anon.' %}
           <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger">Solicitar</a>
         {% else %}

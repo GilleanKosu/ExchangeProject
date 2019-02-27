@@ -47,4 +47,15 @@ class ServicioRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    //Saca los 5 mas recientes
+    public function findServicesAndOrderBy()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.date', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
