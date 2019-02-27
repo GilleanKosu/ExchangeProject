@@ -4,22 +4,29 @@
 
 {% block body %}
 <main>
-    <form method="post" action="/mandarMensaje">
-    <div class="input-field col s12">
-        <h5 class="blue-text">Introduzca el correo del receptor</h5>
-        <div class="row">
-            <label for="receptor">Email</label>
-            <input type="email" name="receptor" id="receptor" required>
-        </div>
-        
-        <div class="input-field col s12">
-            <textarea id="contact-info" name="contact-info" class="materialize-textarea" required></textarea>
-            <label for="contact-info">Información</label>
-        </div>
-
+    <div id="messageModal" class="modal">
+        <form method="post" action="/mandarMensaje">
+            <div class="modal-content">
+                <div class="input-field col s12">
+                    <h5 class="blue-text">Introduzca el correo del receptor</h5>
+                    <div class="row">
+                        <label for="receptor">Email</label>
+                        <input type="email" name="receptor" id="receptor" required>
+                    </div>
+                    <div class="input-field col s12">
+                        <textarea id="contact-info" name="contact-info" class="materialize-textarea" required></textarea>
+                        <label for="contact-info">Información</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-close waves-effect btn-flat waves-red">Cancelar</a>
+                <button class="modal-close waves-effect blue btn white-text" type="submit">Enviar</button>
+            </div>
+        </form>
     </div>
-    <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
-    </form>
+    <a href="#messageModal" class="btn-floating btn-large waves-effect waves-light blue darken-4 create-message modal-trigger"><i class="material-icons">add</i></a>
+    
 
      {% for msg in mensajes %}
 

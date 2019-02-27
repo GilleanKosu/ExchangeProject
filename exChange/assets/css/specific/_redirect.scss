@@ -1,0 +1,21 @@
+.special-card {
+    padding: 0 !important;
+    & .check {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: #b2ff59;
+        color: #33691e;
+        width: 100%;
+        height: 180px;
+        font-size: 22px;
+        & i {
+            font-size: 68px;
+            color: #33691e;
+        }
+    }
+    & .progress {
+        margin: 0 !important;
+        background-color: #b2ff59;
+    }
+}

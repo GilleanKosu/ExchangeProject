@@ -1,0 +1,48 @@
+.page-title {
+    text-align: center;
+    font-size: 6em;
+    padding-top: 30px;
+    font-weight: lighter;
+    text-transform: uppercase;
+}
+
+.smaller {
+    font-size: 4em;
+}
+
+.contact-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
+    &>*:first-child {
+        border-right: 2px solid #2196f3;
+        & p {
+            padding: 40px;
+        }
+    }
+    &>*:last-child {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 800px) {
+    .page-title {
+        font-size: 4em;
+    }
+    .smaller {
+        font-size: 2em;
+    }
+    .contact-wrapper {
+        display: flex;
+        flex-flow: wrap;
+        &>*:first-child {
+            border-right: 0px solid #2196f3;
+            & p {
+                padding: 30px;
+            }
+        }
+        &>*:last-child {
+            padding: 30px;
+        }
+    }
+}

@@ -1,0 +1,44 @@
+$footer-height: 70px;
+footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: $footer-height;
+    background-image: url("../images/background.jpg");
+    background-size: 100% auto;
+    background-position: bottom;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    & .copyright {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        font-size: 1.1em;
+        & i {
+            font-size: 32px;
+            padding: 0 10px;
+        }
+    }
+    & .legal {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        & a {
+            color: #0d47a1;
+            padding: 0 30px 0 5px;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+main {
+    padding-bottom: $footer-height;
+    &>*:last-child {
+        padding-bottom: 40px;
+    }
+}
