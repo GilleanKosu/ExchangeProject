@@ -122,7 +122,7 @@ class DefaultController extends AbstractController
 
         if(isset($_FILES['imagenes'])) {
 
-            move_uploaded_file($_FILES['imagenes']['tmp_name'], '../assets/images/'.$_FILES['imagenes']['name']);
+            move_uploaded_file($_FILES['imagenes']['tmp_name'], 'public/images/'.$_FILES['imagenes']['name']);
             $usuario->setImagenUsuario($_FILES['imagenes']['name']);
 
         }
