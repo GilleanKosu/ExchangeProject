@@ -10,11 +10,16 @@
     left: 0;
 }
 
+.center {
+    text-align: center !important;
+    padding: 0 !important;
+}
+
 #logo {
     font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
     padding-left: 20px;
     .color {
-        color: #2979ff;
+        color: #2196f3;
         font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
     }
 }
@@ -33,7 +38,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 1000;
     &>*>* {
         background-image: url("../images/background.jpg");
         background-size: 100% auto;
@@ -57,6 +62,16 @@ header {
             background-color: transparent;
         }
     }
+}
+
+.user-img {
+    width: 35px;
+    position: absolute;
+    top: 9px;
+}
+
+#mobile-demo {
+    z-index: 1001;
 }
 
 #searchModal {
@@ -85,10 +100,11 @@ main {
                 font-size: 30px;
             }
         }
-        & .services-list {
+        & .services-list,
+        &>.row {
             width: 100%;
             display: flex;
-            flex-wrap: wrap;
+            flex-flow: wrap;
             align-items: center;
             justify-content: space-evenly;
             & article {
@@ -107,18 +123,23 @@ main {
                     height: 30%;
                     top: -30px;
                     left: 0px;
-                    background-color: #0d47a1;
+                    background-color: #80deea;
                     transform: skewY(-10deg);
                 }
                 & p:first-child {
                     position: relative;
-                    color: white;
+                }
+                & .ranking {
+                    position: absolute;
+                    top: 7px;
+                    right: 7px;
+                    font-weight: 600;
+                    font-size: 2.2rem;
                 }
                 & h3 {
                     font-size: 35px;
                     font-weight: lighter;
                     margin-top: 3rem;
-                    /* font-family: Montserrat, 'Open Sans', Arial, Helvetica, sans-serif; */
                 }
                 & h4 {
                     font-size: 27px;
@@ -142,6 +163,11 @@ main {
                 }
             }
         }
+    }
+    & #requestModal .modal-form {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-evenly;
     }
 }
 

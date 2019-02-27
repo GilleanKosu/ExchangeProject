@@ -27,10 +27,23 @@ class DefaultController extends AbstractController
         $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
         $ciudades = $repository2 ->findAll();
 
+        $repository3 = $this -> getDoctrine() -> getRepository(Servicio::class);
+        $ofertas_recientes = $repository3 ->findServicesAndOrderBy();
+        // $mejor_valorados = $repository3 ->;
+
+
+        // foreach ($servicios as $key => $value) {
+        //     echo($servicios[$key]->getDescripcionServicio());
+        // }
+
+        // die();
+
+
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
             'categorias' => $categorias,
             'ciudades' => $ciudades,
+            'ofertas_recientes' => array_reverse($ofertas_recientes),
             'user' => $user
         ]);
     }
@@ -168,8 +181,12 @@ class DefaultController extends AbstractController
         $crearOferta->setDescripcionServicio($_POST['descripcion']);
         $crearOferta->setIdCategoria($categoria);
         $crearOferta->setHorasDia($_POST['duracionservicio']);
+        $crearOferta->setDate(date("Ymd"));
 
         $entityManager = $this->getDoctrine()->getManager();
+
+        //Buscamos la ciudad del usuarioy añadimos ese servicio(el metodo coge solo la id de la ciudad y la mete en las tablas correspondientes)
+        $user->getCiudad()->addServicio($crearOferta);
         
         $user->addServicio($crearOferta);
 

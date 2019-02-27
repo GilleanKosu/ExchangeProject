@@ -63,7 +63,7 @@ class User implements UserInterface
     private $imagenUsuario;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Servicio", mappedBy="usuario", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Servicio", mappedBy="usuario", cascade={"all"}, orphanRemoval=true)
      */
     private $servicios;
 

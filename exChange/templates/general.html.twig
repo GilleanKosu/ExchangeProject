@@ -7,7 +7,7 @@
     {% block stylesheets %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans|Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="{{ asset('build/app.css') }}">{# 
         <style>
@@ -32,9 +32,6 @@
                     {% if user != 'anon.' %}
                     <li><a class="waves-effect waves-light modal-trigger blue-text text-darken-4"
                             href="#servicesModal"><i class="material-icons left">fiber_new</i>Nuevo servicio</a></li>
-                    <li><a class="waves-effect waves-light blue-text text-darken-4"
-                            href="/successLogin/misDatosPersonales"><i class="material-icons left">person</i>Perfil</a>
-                    </li>
                     <li><a class="waves-effect waves-light blue-text text-darken-4" href="/contacto"><i
                                 class="material-icons left">contact_mail</i>Contacto</a></li>
                     <li><a class="waves-effect waves-light blue-text text-darken-4" href="/logout"><i
@@ -46,7 +43,13 @@
                                 class="material-icons left">person</i>Cuenta</a></li>
                     {% endif %}
                     <li><a class="waves-effect waves-light modal-trigger blue-text text-darken-4" href="#searchModal"><i
-                                class="material-icons left">search</i>Busqueda</a></li>
+                                class="material-icons">search</i></a></li>
+                    {% if user != 'anon.' %}
+                    <li><a class="waves-effect waves-light blue-text text-darken-4"
+                            href="/successLogin/misDatosPersonales"><img src="/images/default.jpg" alt="" class="circle user-img responsive-img"></a>
+                    </li>
+                    {% endif %}
+                    
                 </ul>
             </div>
         </nav>
