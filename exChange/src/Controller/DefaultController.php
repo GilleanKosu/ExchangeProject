@@ -43,7 +43,7 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
             'categorias' => $categorias,
             'ciudades' => $ciudades,
-            'ofertas_recientes' => array_reverse($ofertas_recientes),
+            'ofertas_recientes' => $ofertas_recientes,
             'user' => $user
         ]);
     }
