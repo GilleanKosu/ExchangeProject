@@ -31,12 +31,6 @@ class Contacto
      */
     private $informacion;
 
-    public function __construct ($mensaje) {
-        $nombre = $mensaje ['name'];
-        $nombre = $mensaje ['email'];
-        $nombre = $mensaje ['contact-info'];
-    }
-
     public function getId(): ?int
     {
         return $this->id;

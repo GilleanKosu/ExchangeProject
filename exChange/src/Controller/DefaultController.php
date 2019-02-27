@@ -134,7 +134,7 @@ class DefaultController extends AbstractController
      */
     public function contacto() {
 
-        if (isset($_POST['enviar_Contacto'])) {
+        if (isset($_POST['contact-submit'])) {
 
             $repository = $this -> getDoctrine() -> getRepository(Categoria::class);
             $categorias = $repository ->findAll();
@@ -143,7 +143,17 @@ class DefaultController extends AbstractController
 
             $token = $this->get('security.token_storage')->getToken();
             $user = $token->getUser();
+
+            $nuevo_contacto = new Contacto();
+            $nuevo_contacto->setNombre($_POST['name']);
+            $nuevo_contacto->setEmail($_POST['email']);
+            $nuevo_contacto->setInformacion($_POST['contact-info']);
             
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $entityManager->persist($nuevo_contacto);
+            $entityManager->flush();
+
             return $this->render('contacto.html.twig', [
                 'user' => $user,
                 'categorias' => $categorias,
@@ -152,19 +162,19 @@ class DefaultController extends AbstractController
 
         } else {
 
-        $repository = $this -> getDoctrine() -> getRepository(Categoria::class);
-        $categorias = $repository ->findAll();
-        $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
-        $ciudades = $repository2 ->findAll();
+            $repository = $this -> getDoctrine() -> getRepository(Categoria::class);
+            $categorias = $repository ->findAll();
+            $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
+            $ciudades = $repository2 ->findAll();
 
-        $token = $this->get('security.token_storage')->getToken();
-        $user = $token->getUser();
+            $token = $this->get('security.token_storage')->getToken();
+            $user = $token->getUser();
 
-        return $this->render('contacto.html.twig', [
-            'user' => $user,
-            'categorias' => $categorias,
-            'ciudades' => $ciudades
-        ]);
+            return $this->render('contacto.html.twig', [
+                'user' => $user,
+                'categorias' => $categorias,
+                'ciudades' => $ciudades
+            ]);
 
         }
 
