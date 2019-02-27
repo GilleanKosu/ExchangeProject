@@ -74,7 +74,7 @@
           <p class="ranking">#{{loop.index}}</p>
           <h3>{{ mejor_valorado.getDescripcionServicio }}</h3>
           <h4>{{ mejor_valorado.getDuracionServicio }}H</h4>
-          <p class="category-text">{{ mejor_valorado.getIdCategoria }}</p>
+          <p class="category-text">{{ mejor_valorado.getIdCategoria }} {{ mejor_valorado.getValoracion }}</p>
           <input type="hidden" value="{{ mejor_valorado.getId }}" name="service-id" class="service-id">
           <p class="points"></p>
           {% if user != 'anon.' %}
