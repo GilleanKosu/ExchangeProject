@@ -5,6 +5,7 @@ use App\Entity\User;
 use App\Entity\Ciudad;
 use App\Entity\Categoria;
 use App\Entity\Servicio;
+use App\Entity\Contacto;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,16 +31,6 @@ class DefaultController extends AbstractController
         $repository3 = $this -> getDoctrine() -> getRepository(Servicio::class);
         $ofertas_recientes = $repository3 ->findServicesAndOrderById();
         $mejor_valoradas = $repository3 ->findServicesAndOrderByValoracion();
-        
-        // $mejor_valorados = $repository3 ->;
-
-
-        // foreach ($servicios as $key => $value) {
-        //     echo($servicios[$key]->getDescripcionServicio());
-        // }
-
-        // die();
-
 
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
@@ -143,6 +134,24 @@ class DefaultController extends AbstractController
      */
     public function contacto() {
 
+        if (isset($_POST['enviar_Contacto'])) {
+
+            $repository = $this -> getDoctrine() -> getRepository(Categoria::class);
+            $categorias = $repository ->findAll();
+            $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
+            $ciudades = $repository2 ->findAll();
+
+            $token = $this->get('security.token_storage')->getToken();
+            $user = $token->getUser();
+            
+            return $this->render('contacto.html.twig', [
+                'user' => $user,
+                'categorias' => $categorias,
+                'ciudades' => $ciudades
+            ]);
+
+        } else {
+
         $repository = $this -> getDoctrine() -> getRepository(Categoria::class);
         $categorias = $repository ->findAll();
         $repository2 = $this -> getDoctrine() -> getRepository(Ciudad::class);
@@ -156,6 +165,10 @@ class DefaultController extends AbstractController
             'categorias' => $categorias,
             'ciudades' => $ciudades
         ]);
+
+        }
+
+        
         
     }
     /**
@@ -294,6 +307,24 @@ class DefaultController extends AbstractController
         ]);
         
     }
+
+    // /**
+    //  * @Route("/msg_cont", name="mensaje_Contacto")
+    //  */
+    // public function mensajeContacto() {
+
+    //     // $token = $this->get('security.token_storage')->getToken();
+    //     // $user = $token->getUser();
+
+    //     $token = $this->get('security.token_storage')->getToken();
+    //     $user = $token->getUser();
+    //     return $this->render('search.html.twig', [
+    //         'user' => $user,
+    //         'categorias' => $categorias,
+    //         'ciudades' => $ciudades
+    //     ]);
+        
+    // }
 
 
 
