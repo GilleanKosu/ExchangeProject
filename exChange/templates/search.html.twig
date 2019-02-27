@@ -4,6 +4,7 @@
 
 {% block body %}
 <main>
+    <form method="get" action="/search">
     <div class="input-field col s12">
         <h5 class="blue-text">Filtrar Categoría</h5>
         <select class="blue" name="cat">
@@ -27,5 +28,21 @@
             {% endif %}
         </select>
     </div>
+    <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
+    </form>
+
+    <article class="card blue accent-1">
+      {% if serviciosPorCiudad is defined %}
+          <ul>
+            {% for servicios in serviciosPorCiudad %}
+                <li>{{ servicios.getDescripcionServicio }}</li>
+            {% endfor %}
+          <ul>
+      {% endif %}
+      
+      {% if errorServicio is defined %}
+          <h3>{{ errorServicio }}<h3>
+      {% endif %}
+      </article>
 </main>
 {% endblock %}

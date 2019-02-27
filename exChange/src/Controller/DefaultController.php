@@ -45,14 +45,7 @@ class DefaultController extends AbstractController
      * @Route("/successLogin", name="successLogin")
      */
     public function successLogin(){
-
-        $token = $this->get('security.token_storage')->getToken();
-        $user = $token->getUser();
-
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
         return $this->redirectToRoute('index');
-        
     }
     /**
      * @Route("/successLogin/misDatosPersonales", name="misDatosPersonales")
@@ -218,7 +211,7 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/buscarservicios", name="buscarservicios")
+     * @Route("/search", name="buscarservicios")
      */
     public function buscarservicios() {
         
@@ -227,7 +220,7 @@ class DefaultController extends AbstractController
 
         //Repositorios y metodos de las cosas con las que necesitamos trabajar o pasar a la vista
         $repository = $this -> getDoctrine() -> getRepository(Ciudad::class);
-        $ciudad = $repository -> findOneByName($_POST['ciudades']);
+        $ciudad = $repository -> findOneByName($_POST['city']);
 
         $repository2 = $this -> getDoctrine() -> getRepository(Categoria::class);
         $categorias = $repository2 ->findAll();
@@ -241,7 +234,7 @@ class DefaultController extends AbstractController
         foreach ($serviciosPorCiudad as $key => $value) {
 
             //Guardamos esos servicios para luego pasarlos por parametro
-            if ( ($value->getIdCategoria()) == ($_POST['categorias'])) {
+            if ( ($value->getIdCategoria()) == ($_GET['cat'])) {
                 $listaServicios[] = $serviciosPorCiudad[$key];
             }
         }
@@ -249,7 +242,7 @@ class DefaultController extends AbstractController
         //Si ha encontrado los servicios que se correspondan los pasará a la vista
         if(isset($listaServicios)) {
 
-            return $this->render('default/index.html.twig', [
+            return $this->render('search.html.twig', [
                 'controller_name' => 'DefaultController',
                 'categorias' => $categorias,
                 'ciudades' => $ciudades,
