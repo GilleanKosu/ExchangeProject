@@ -20,5 +20,28 @@
     </div>
     <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
     </form>
+
+     {% for msg in mensajes %}
+
+        {% if msg.getLeido==0 %}
+            
+            <article class="card cyan lighten-4 blue-text text-darken-4">
+                <p class="time">{{ msg.getRemitente() }}</p>
+                <p class="time">{{ msg.getContenido() }}</p>
+
+            </article>
+
+        {% elseif msg.getLeido==1 %}
+
+            <article class="card cyan lighten-4 blue-text text-darken-4">
+                <p class="time">{{ msg.getId() }}</p>
+                <p class="time">{{ msg.getRemitente() }}</p>
+                <p class="time">{{ msg.getContenido() }}</p>
+
+            </article>
+
+          
+        {% endif %}
+      {% endfor %}
 </main>
 {% endblock %}
