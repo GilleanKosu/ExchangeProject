@@ -59,15 +59,15 @@
   <section class="most-demanded-services">
     <h2 class="section-title blue-text">Servicios más demandados</h2>
     <div class="services-list">
-        {% for i in 1..10 %}{# Utilizar loop.index luego #}
+        {% for mejor_valorado in mejor_valoradas %}{# Utilizar loop.index luego #}
         <article class="card cyan lighten-4 blue-text text-darken-4">
-          <p>Manuel Luján Jiménez</p>
-          <p class="ranking">#{{i}}</p>
-          <h3>Saco a pasear a mascotas</h3>
-          <h4>1h</h4>
-          <p class="category-text">Mascotas</p>
+          <p>f {# <h4>{{ servicio.getUsuario }}H</h4> #} </p>
+          <p class="ranking">#{{loop.index}}</p>
+          <h3>{{ mejor_valorado.getDescripcionServicio }}</h3>
+          <h4>{{ mejor_valorado.getDuracionServicio }}H</h4>
+          <p class="category-text">{{ mejor_valorado.getIdCategoria }}</p>
           {% if user != 'anon.' %}
-            <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger">Solicitar</a>
+           <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger">Solicitar</a>
           {% else %}
             <a href="/login" class="cyan darken-3 white-text waves-effect waves-light">Solicitar</a>
           {% endif %}
