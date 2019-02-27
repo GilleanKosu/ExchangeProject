@@ -53,7 +53,8 @@
       <article class="card cyan lighten-4 blue-text text-darken-4">
         <p>f {# <h4>{{ servicio.getUsuario }}H</h4> #} </p>
         <h3>{{ servicio.getDescripcionServicio }}</h3>
-        <h4>{{ servicio.getDuracionServicio }}H</h4>
+        <p class="time">{{ servicio.getDuracionServicio }}H</p>
+        <p class="points"> {{ servicio.getValoracion }}<i class="material-icons">star_border</i></p>
         <p class="category-text">{{ servicio.getIdCategoria }}</p>
         <input type="hidden" value="{{ servicio.getId }}" name="service-id" class="service-id">
         {% if user != 'anon.' %}
@@ -68,16 +69,17 @@
   <section class="most-demanded-services">
     <h2 class="section-title blue-text">Servicios más demandados</h2>
     <div class="services-list">
-        {% for mejor_valorado in mejor_valoradas %}{# Utilizar loop.index luego #}
+        {% for mejor_valorado in mejor_valoradas %}
         <article class="card cyan lighten-4 blue-text text-darken-4">
           <p>f {# <h4>{{ servicio.getUsuario }}H</h4> #} </p>
           <p class="ranking">#{{loop.index}}</p>
           <h3>{{ mejor_valorado.getDescripcionServicio }}</h3>
-          <h4>{{ mejor_valorado.getDuracionServicio }}H</h4>
-          <p class="category-text">{{ mejor_valorado.getIdCategoria }} {{ mejor_valorado.getValoracion }}</p>
+          <p class="time">{{ mejor_valorado.getDuracionServicio }}H</p>
+          <p class="points"> {{ mejor_valorado.getValoracion }}<i class="material-icons">star_border</i></p>
+          <p class="category-text">{{ mejor_valorado.getIdCategoria }}</p>
           <input type="hidden" value="{{ mejor_valorado.getId }}" name="service-id" class="service-id">
           {% if user != 'anon.' %}
-           <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger request-btn">Solicitar</a>
+            <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger request-btn">Solicitar</a>
           {% else %}
             <a href="/login" class="cyan darken-3 white-text waves-effect waves-light">Solicitar</a>
           {% endif %}
@@ -92,7 +94,6 @@
   {# <div class> #}
 
   {# <form method="post" action="/buscarservicios">
-
         <h3>Nombre de la categoria</h3>
        <select name="categorias" class="category-text">
             {% if categorias %}
@@ -111,7 +112,6 @@
         </select>
         <button class="btn btn-lg btn-primary" type="submit">Buscar</button>
       </form>
-
   {# <article class="card blue accent-1">
       {% if serviciosPorCiudad is defined %}
           <ul>
