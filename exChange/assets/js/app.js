@@ -6,6 +6,14 @@ $(function () {
     $('.modal').modal();
     $('select').formSelect();
     $('.sidenav').sidenav();
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        firstDay: true
+    });
+    $('.timepicker').timepicker({
+        twelveHour: false
+    });
+
     $('#clearInput').click(function () {
         $('#q').val("");
     });
