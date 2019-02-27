@@ -3,9 +3,12 @@ const $ = require('jquery');
 require('../js/materialize.min.js');
 
 $(function () {
+    /* General */
     $('.modal').modal();
     $('select').formSelect();
     $('.sidenav').sidenav();
+
+    /* Solicitud de servicio */
     $('.datepicker').datepicker({
         format: 'dd/mm/yyyy',
         firstDay: true
@@ -13,18 +16,15 @@ $(function () {
     $('.timepicker').timepicker({
         twelveHour: false
     });
-
     $('#clearInput').click(function () {
         $('#q').val("");
     });
-
     $('.request-btn').click(function () {
         $(this).parent().trigger("request");
     });
     $('article').on("request", function () {
-        $('.section-article-request').find(".service-id").remove();
         $('.section-article-request').find("article").remove();
-        $(this).find('.service-id').clone().appendTo(".section-article-request");
         $(this).clone().appendTo(".section-article-request").find('a').remove();
     });
+    /* Fin solicitud de servicio */
 })
