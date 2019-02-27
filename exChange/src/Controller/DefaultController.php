@@ -33,19 +33,35 @@ class DefaultController extends AbstractController
         $ofertas_recientes = $repository3 ->findServicesAndOrderById();
         $mejor_valoradas = $repository3 ->findServicesAndOrderByValoracion();
 
-        $repository4 = $this -> getDoctrine() -> getRepository(Mensajes::class);
-        $mensajes_usuario = $user->getMensajes();
-        
+        if ($user =="anon.") {
 
-        return $this->render('default/index.html.twig', [
-            'controller_name' => 'DefaultController',
-            'categorias' => $categorias,
-            'ciudades' => $ciudades,
-            'ofertas_recientes' => $ofertas_recientes,
-            'mejor_valoradas' => $mejor_valoradas,
-            'mensajes' => $mensajes_usuario,
-            'user' => $user
-        ]);
+            return $this->render('default/index.html.twig', [
+                'controller_name' => 'DefaultController',
+                'categorias' => $categorias,
+                'ciudades' => $ciudades,
+                'ofertas_recientes' => $ofertas_recientes,
+                'mejor_valoradas' => $mejor_valoradas,
+                'user' => $user
+            ]);
+            
+        } else {
+
+            $repository4 = $this -> getDoctrine() -> getRepository(User::class);
+            $usuario = $repository4 ->findOneByEmail($user->getEmail());
+            $mensajes_usuario = $usuario->getMensajes();
+
+            return $this->render('default/index.html.twig', [
+                'controller_name' => 'DefaultController',
+                'categorias' => $categorias,
+                'ciudades' => $ciudades,
+                'ofertas_recientes' => $ofertas_recientes,
+                'mejor_valoradas' => $mejor_valoradas,
+                'mensajes' => $mensajes_usuario,
+                'user' => $user
+            ]);
+
+        }
+       
     }
     /**
      * @Route("/successLogin", name="successLogin")
@@ -330,9 +346,13 @@ class DefaultController extends AbstractController
         $ofertas_recientes = $repository3 ->findServicesAndOrderById();
         $mejor_valoradas = $repository3 ->findServicesAndOrderByValoracion();
 
+        $repository4 = $this -> getDoctrine() -> getRepository(Mensajes::class);
+        $mensajes_usuario = $user->getMensajes();
+
         return $this->render('mensajes.html.twig', [
             'categorias' => $categorias,
             'ciudades' => $ciudades,
+            'mensajes' => $mensajes_usuario,
             'user' => $user
         ]);
         
@@ -353,6 +373,8 @@ class DefaultController extends AbstractController
         $nuevoMensaje -> setRemitente($user);
         $nuevoMensaje -> addDestinatario($destinatario);
         $nuevoMensaje -> setContenido($_POST['contact-info']);
+        $nuevoMensaje -> setDate(date("Ymd"));
+        $nuevoMensaje -> setLeido(0);
         $destinatario -> addMensaje ($nuevoMensaje);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->merge($destinatario);

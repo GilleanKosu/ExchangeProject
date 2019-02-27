@@ -33,6 +33,16 @@ class Mensajes
      */
     private $contenido;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $leido;
+
     public function __construct()
     {
         $this->destinatario = new ArrayCollection();
@@ -89,6 +99,30 @@ class Mensajes
     public function setContenido(?string $contenido): self
     {
         $this->contenido = $contenido;
+
+        return $this;
+    }
+
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
+
+    public function setDate(?string $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getLeido(): ?bool
+    {
+        return $this->leido;
+    }
+
+    public function setLeido(bool $leido): self
+    {
+        $this->leido = $leido;
 
         return $this;
     }
