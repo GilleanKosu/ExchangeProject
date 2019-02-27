@@ -318,23 +318,15 @@ class DefaultController extends AbstractController
         
     }
 
-    // /**
-    //  * @Route("/msg_cont", name="mensaje_Contacto")
-    //  */
-    // public function mensajeContacto() {
 
-    //     // $token = $this->get('security.token_storage')->getToken();
-    //     // $user = $token->getUser();
+    /**
+     * @Route("/msg_user", name="mensajes_Usuario")
+     */
+    public function mensajeUsuario() {
 
-    //     $token = $this->get('security.token_storage')->getToken();
-    //     $user = $token->getUser();
-    //     return $this->render('search.html.twig', [
-    //         'user' => $user,
-    //         'categorias' => $categorias,
-    //         'ciudades' => $ciudades
-    //     ]);
+        // return $this->render('mensajes.html.twig');
         
-    // }
+    }
 
 
 
