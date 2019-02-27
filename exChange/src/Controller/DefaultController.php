@@ -220,7 +220,7 @@ class DefaultController extends AbstractController
 
         //Repositorios y metodos de las cosas con las que necesitamos trabajar o pasar a la vista
         $repository = $this -> getDoctrine() -> getRepository(Ciudad::class);
-        $ciudad = $repository -> findOneByName($_POST['city']);
+        $ciudad = $repository -> findOneByName($_GET['city']);
 
         $repository2 = $this -> getDoctrine() -> getRepository(Categoria::class);
         $categorias = $repository2 ->findAll();
