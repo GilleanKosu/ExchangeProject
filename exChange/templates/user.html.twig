@@ -5,74 +5,59 @@
 {% block body %}
 
 <main>
-  <section>
+  {# <section>
     <h2 class="section-title blue-text">Bienvenido</h2>
-  </section>
+  </section> #}
   <section class="latest-services">
     <h2 class="section-title blue-text">Ultimos servicios</h2>
     <div class="services-list">
-      <article class="card blue accent-1">
-        <p class="user-text">xLuyan</p>
-        <h3>Limpieza de coches</h3>
-        <h4>30m</h4>
-        <p class="category-text">Automóviles</p>
+      {% for i in 1..10 %}
+      <article class="card cyan lighten-4 blue-text text-darken-4">
+        <p>Manuel Luján Jiménez</p>
+        <h3>Saco a pasear a mascotas</h3>
+        <h4>1h</h4>
+        <p class="category-text">Mascotas</p>
+        {% if user != 'anon.' %}
+          <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger">Solicitar</a>
+        {% else %}
+          <a href="/login" class="cyan darken-3 white-text waves-effect waves-light">Solicitar</a>
+        {% endif %}
       </article>
-      <article class="card blue accent-1">
-        <p class="user-text">xLuyan</p>
-        <h3>Limpieza de coches</h3>
-        <h4>30m</h4>
-        <p class="category-text">Automóviles</p>
-      </article>
-      <article class="card blue accent-1">
-        <p class="user-text">xLuyan</p>
-        <h3>Limpieza de coches Especial extra plus</h3>
-        <h4>30m</h4>
-        <p class="category-text">Automóviles</p>
-      </article>
-      <article class="card blue accent-1">
-        <p class="user-text">xLuyan</p>
-        <h3>Limpieza de coches</h3>
-        <h4>30m</h4>
-        <p class="category-text">Automóviles</p>
-      </article>
-      <article class="card blue accent-1">
-        <p class="user-text">xLuyan</p>
-        <h3>Limpieza de coches</h3>
-        <h4>30m</h4>
-        <p class="category-text">Automóviles</p>
-      </article>
-      <article class="card blue accent-1">
-        <p class="user-text">xLuyan</p>
-        <h3>Limpieza de coches</h3>
-        <h4>30m</h4>
-        <p class="category-text">Automóviles</p>
-      </article>
-      <article class="card blue accent-1">
-        <p class="user-text">xLuyan</p>
-        <h3>Limpieza de coches Especial extra plus</h3>
-        <h4>30m</h4>
-        <p class="category-text">Automóviles</p>
-      </article>
-      <article class="card blue accent-1">
-        <p class="user-text">xLuyan</p>
-        <h3>Limpieza de coches</h3>
-        <h4>30m</h4>
-        <p class="category-text">Automóviles</p>
-      </article>
-      <article class="card blue accent-1">
-        <p class="user-text">xLuyan</p>
-        <h3>Limpieza de coches</h3>
-        <h4>30m</h4>
-        <p class="category-text">Automóviles</p>
-      </article>
-      <article class="card blue accent-1">
-        <p class="user-text">xLuyan</p>
-        <h3>Limpieza de coches</h3>
-        <h4>30m</h4>
-        <p class="category-text">Automóviles</p>
-      </article>
+      {% endfor %}
     </div>
   </section>
+  <section class="most-demanded-services">
+    <h2 class="section-title blue-text">Servicios más demandados</h2>
+    <div class="services-list">
+      {% for i in 1..10 %}{# Utilizar loop.index luego #}
+      <article class="card cyan lighten-4 blue-text text-darken-4">
+        <p>Manuel Luján Jiménez</p>
+        <p class="ranking">#{{i}}</p>
+        <h3>Saco a pasear a mascotas</h3>
+        <h4>1h</h4>
+        <p class="category-text">Mascotas</p>
+        {% if user != 'anon.' %}
+          <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger">Solicitar</a>
+        {% else %}
+          <a href="/login" class="cyan darken-3 white-text waves-effect waves-light">Solicitar</a>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% if user != 'anon.' %}
+  <div id="requestModal" class="modal">
+    <form method="post" action="/request">
+      <div class="modal-content">
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect btn-flat waves-red">Cancelar</a>
+        <button class="modal-close waves-effect blue btn white-text" type="submit">Solicitar</button>
+        {# <button class="btn btn-lg btn-primary modal-close" type="submit">Crear servicio</button> #}
+      </div>
+    </form>
+  </div>
+  {% endif %}
   <section class="most-demanded-services">
   
     {# <h2 class="section-title blue-text">Introducir nueva</h2>

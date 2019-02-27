@@ -33,7 +33,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 10000;
     &>*>* {
         background-image: url("../images/background.jpg");
         background-size: 100% auto;
@@ -113,11 +113,17 @@ main {
                 & p:first-child {
                     position: relative;
                 }
+                & .ranking {
+                    position: absolute;
+                    top: 7px;
+                    right: 7px;
+                    font-weight: 600;
+                    font-size: 2.2rem;
+                }
                 & h3 {
                     font-size: 35px;
                     font-weight: lighter;
                     margin-top: 3rem;
-                    /* font-family: Montserrat, 'Open Sans', Arial, Helvetica, sans-serif; */
                 }
                 & h4 {
                     font-size: 27px;
