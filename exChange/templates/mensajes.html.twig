@@ -26,6 +26,7 @@
     <a href="#messageModal" class="btn-floating btn-large waves-effect waves-light blue darken-4 create-message modal-trigger"><i class="material-icons">add</i></a>
     <h2 class="page-title blue-text center smaller">Bandeja de entrada</h2>
     <ul class="collapsible popout messages-list">
+    <form action="/leido" method="POST">
      {% for msg in mensajes %}
 
         {% if msg.getLeido==0 %}
@@ -36,7 +37,7 @@
                     {{ msg.getRemitente() }}{# <p class="right">{{ msg.getDate() }}</p> #}
                 </div>
                 <div class="collapsible-body">
-                    <button type="submit" value="{{ msg.getId }}" class="waves-effect waves-light btn-small blue">
+                    <button type="submit" value="{{ msg.getId }}" class="waves-effect waves-light btn-small blue" name="readed">
                         <i class="material-icons">drafts</i>
                     </button>
                     <span>{{ msg.getContenido() }}</span>
@@ -53,5 +54,6 @@
           
         {% endif %}
       {% endfor %}
+      </form>
 </main>
 {% endblock %}
