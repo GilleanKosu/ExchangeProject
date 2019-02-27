@@ -47,4 +47,13 @@ class MensajesRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findOneById($value): ?Mensajes
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }

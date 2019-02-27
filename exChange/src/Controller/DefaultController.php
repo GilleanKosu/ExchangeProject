@@ -275,7 +275,7 @@ class DefaultController extends AbstractController
         } else { //Si no los ha encontrado generará una variable de error que se mostrará en la vista
 
             $error = "No se ha encontrado ningun servicio para esa ciudad";
-            return $this->render('default/index.html.twig', [
+            return $this->render('search.html.twig', [
                 'controller_name' => 'DefaultController',
                 'categorias' => $categorias,
                 'ciudades' => $ciudades,
@@ -382,7 +382,50 @@ class DefaultController extends AbstractController
         
         return $this->redirectToRoute('mensajes_Usuario');
     }
+    /**
+     * @Route("/baja", name="dar_baja")
+     */
+    public function darBaja() {
 
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
+        
+        $repository = $this -> getDoctrine() -> getRepository(User::class);
+        $usuario = $repository -> findOneByEmail($user->getEmail());
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($usuario);
+        $entityManager->flush();
+        
+        return $this->render('index');
+    }
+    
+    /**
+     * @Route("/leido", name="marcar")
+     */
+    public function marcarMensajes() {
+
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
+        
+        $repository = $this -> getDoctrine() -> getRepository(User::class);
+        $repository2 = $this -> getDoctrine() -> getRepository(Mensajes::class);
+        $usuario = $repository ->findOneByEmail($user->getEmail());
+        $mensajes_usuario = $usuario->getMensajes();
+
+        foreach ($mensajes_usuario as $key => $value) {
+            if($value->getId() == $_POST['readed']) {
+                $cosa=$value;
+            }
+        }
+        $correoMarcado = $repository2 ->findOneById($cosa->getId());
+        $correoMarcado->setLeido(1);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->merge($correoMarcado);
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('mensajes_Usuario');
+    }
 
 
 
