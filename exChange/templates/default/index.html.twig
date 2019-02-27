@@ -54,7 +54,7 @@
         <p>f {# <h4>{{ servicio.getUsuario }}H</h4> #} </p>
         <h3>{{ servicio.getDescripcionServicio }}</h3>
         <p class="time">{{ servicio.getDuracionServicio }}H</p>
-        <p class="points"> {{ servicio.getValoracion }}<i class="material-icons">star_rate</i></p>
+        <p class="points"> {{ servicio.getValoracion }}<i class="material-icons">star_border</i></p>
         <p class="category-text">{{ servicio.getIdCategoria }}</p>
         <input type="hidden" value="{{ servicio.getId }}" name="service-id" class="service-id">
         {% if user != 'anon.' %}
@@ -75,7 +75,7 @@
           <p class="ranking">#{{loop.index}}</p>
           <h3>{{ mejor_valorado.getDescripcionServicio }}</h3>
           <p class="time">{{ mejor_valorado.getDuracionServicio }}H</p>
-          <p class="points"> {{ mejor_valorado.getValoracion }}<i class="material-icons">star_rate</i></p>
+          <p class="points"> {{ mejor_valorado.getValoracion }}<i class="material-icons">star_border</i></p>
           <p class="category-text">{{ mejor_valorado.getIdCategoria }}</p>
           <input type="hidden" value="{{ mejor_valorado.getId }}" name="service-id" class="service-id">
           {% if user != 'anon.' %}

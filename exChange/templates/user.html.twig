@@ -41,14 +41,16 @@
   <section class="latest-services">
     <h2 class="section-title blue-text">Ultimos servicios</h2>
     <div class="services-list">
-      {% for i in 1..10 %}
+      {% for servicio in ofertas_recientes %}
       <article class="card cyan lighten-4 blue-text text-darken-4">
-        <p>Manuel Luján Jiménez</p>
-        <h3>Saco a pasear a mascotas</h3>
-        <h4>1h</h4>
-        <p class="category-text">Mascotas</p>
+        <p>f {# <h4>{{ servicio.getUsuario }}H</h4> #} </p>
+        <h3>{{ servicio.getDescripcionServicio }}</h3>
+        <p class="time">{{ servicio.getDuracionServicio }}H</p>
+        <p class="points"> {{ servicio.getValoracion }}<i class="material-icons">star_border</i></p>
+        <p class="category-text">{{ servicio.getIdCategoria }}</p>
+        <input type="hidden" value="{{ servicio.getId }}" name="service-id" class="service-id">
         {% if user != 'anon.' %}
-          <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger">Solicitar</a>
+          <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger request-btn">Solicitar</a>
         {% else %}
           <a href="/login" class="cyan darken-3 white-text waves-effect waves-light">Solicitar</a>
         {% endif %}
@@ -59,20 +61,22 @@
   <section class="most-demanded-services">
     <h2 class="section-title blue-text">Servicios más demandados</h2>
     <div class="services-list">
-      {% for i in 1..10 %}{# Utilizar loop.index luego #}
-      <article class="card cyan lighten-4 blue-text text-darken-4">
-        <p>Manuel Luján Jiménez</p>
-        <p class="ranking">#{{i}}</p>
-        <h3>Saco a pasear a mascotas</h3>
-        <h4>1h</h4>
-        <p class="category-text">Mascotas</p>
-        {% if user != 'anon.' %}
-          <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger">Solicitar</a>
-        {% else %}
-          <a href="/login" class="cyan darken-3 white-text waves-effect waves-light">Solicitar</a>
-        {% endif %}
-      </article>
-      {% endfor %}
+      {% for mejor_valorado in mejor_valoradas %}
+        <article class="card cyan lighten-4 blue-text text-darken-4">
+          <p>f {# <h4>{{ servicio.getUsuario }}H</h4> #} </p>
+          <p class="ranking">#{{loop.index}}</p>
+          <h3>{{ mejor_valorado.getDescripcionServicio }}</h3>
+          <p class="time">{{ mejor_valorado.getDuracionServicio }}H</p>
+          <p class="points"> {{ mejor_valorado.getValoracion }}<i class="material-icons">star_border</i></p>
+          <p class="category-text">{{ mejor_valorado.getIdCategoria }}</p>
+          <input type="hidden" value="{{ mejor_valorado.getId }}" name="service-id" class="service-id">
+          {% if user != 'anon.' %}
+            <a href="#requestModal" class="cyan darken-3 white-text waves-effect waves-light modal-trigger request-btn">Solicitar</a>
+          {% else %}
+            <a href="/login" class="cyan darken-3 white-text waves-effect waves-light">Solicitar</a>
+          {% endif %}
+        </article>
+        {% endfor %}
     </div>
   </section>
   {# <section class="most-demanded-services"> #}
