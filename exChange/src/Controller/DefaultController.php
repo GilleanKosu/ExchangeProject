@@ -208,6 +208,7 @@ class DefaultController extends AbstractController
         $crearOferta->setIdCategoria($categoria);
         $crearOferta->setHorasDia($_POST['duracionservicio']);
         $crearOferta->setDate(date("Ymd"));
+        $crearOferta->setValoracion(0);
 
         $entityManager = $this->getDoctrine()->getManager();
 
