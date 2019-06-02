@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use App\Entity\Ciudad;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Grafikart\RecaptchaBundle\Type\RecaptchaSubmitType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -45,6 +46,7 @@ class RegistrationFormType extends AbstractType
                     return $er->createQueryBuilder('a');
                 },
             ])
+            ->add('captcha', RecaptchaSubmitType::class)
         ;
     }
 
